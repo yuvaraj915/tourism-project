@@ -1,30 +1,107 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Mysore</title>
+  <meta charset="UTF-8">
+  <title>Hiking Tour Card</title>
 </head>
+<style>
+  body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.tour-card {
+  width: 300px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.image-container {
+  position: relative;
+}
+
+.tour-image {
+  width: 100%;
+  display: block;
+}
+
+.top-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.badge {
+  background: white;
+  color: green;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.rating {
+  background: white;
+  color: orange;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.review-count {
+  color: #666;
+}
+
+.tour-info {
+  padding: 16px;
+}
+
+.country {
+  color: #00aa88;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.title {
+  font-size: 18px;
+  margin: 4px 0 8px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+}
+  </style>
 <body>
-    <header><center><h1>Wecome to Mysore</h1></center></header>
-    <center><h1>Mysore district, renowned for its rich cultural heritage and historical significance,<br> offers a plethora of
-tourist attractions.</br>Here's a comprehensive guide:
-</h1></center>
-    <h2>Historical & Architectural Marvels</h2>
-    <h2 style="color:red;">MYSORE PALACE</h2>
-    <a href="palace.html">
-  <img src="mp.jpg" alt="MYSORE PALACE" />
-</a>
-  <h2 style="color:red;text-align: right;">JAGANMOHAN PALACE</h2>
-    <a href="jmpalace.html">
-    <right><img src="jaganmohan.jpg" alt="JAGANMOHAN PALACE" style="float: right;"/>
-</a>
-    <style>
-        header{
-            background-color: lightslategray;
-            padding: 1%;
-        }
-        body{
-            background-color: white;
-            color: black;
-        }
-        </style>
-        </body>
-        </html>
+    <h1 style="color: green;">WECOME TO MYSORE DISTRICT</h1>
+    <h2>Mysore district, renowned for its rich cultural heritage and historical significance, offers a plethora of
+tourist attractions. Here's a comprehensive guide:</h2>
+    <h3>Historical & Architectural Marvels</h3>
+  <div class="tour-card">
+    <div class="image-container">
+      <img src="mp.jpg" alt="Mysore" class="tour-image">
+      <div class="top-overlay">
+        <span class="badge">KA ADVENTURE</span>
+        <span class="rating">★★★★★ <span class="review-count">(17)</span></span>
+      </div>
+    </div>
+    <div class="tour-info">
+      <p class="country">KARNATAKA</p>
+      <h3 class="title">mysore</h3>
+      <div class="details">
+    </div>
+  </div>
+</body>
+</html>
