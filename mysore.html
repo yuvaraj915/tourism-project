@@ -1,14 +1,237 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>mysore district</title>
-  </head>
+<head>
+  <title>MYSORE DISTRICT</title>
   <style>
-    header{
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: aliceblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
       color: green;
-      background-color: gray;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
     }
   </style>
-  <body>
-    <header>WELCOME TO MYSORE DISTRICT</header>
-  </body>
+</head>
+<body>
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+  </header>
+
+  <main>
+    <h1 class="card-section-title">WELCOME MYSORE DISTRICT</h1>
+    <h2 class="card-subtitle">
+      Mysore district, renowned for its rich cultural heritage and historical significance, offers a plethora of
+      tourist attractions.<br> Here's a comprehensive guide:
+    </h2>
+
+    <h1 style="text-align: center;">Historical & Architectural Marvels</h1>
+
+    <!-- Mysore Palace -->
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="ppalace.html">
+            <img src="C:\Users\HP NoteBook\Pictures\Camera Roll\mp.jpg" alt="Mysore Palace" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Mysore Palace</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jaganmohan Palace -->
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="jmpalace.html">
+            <img src="C:\Users\HP NoteBook\Downloads\jaganmohan.jpg" alt="Jaganmohan Palace" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Jaganmohan Palace</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lalitha Mahal -->
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="lalmohal.html">
+            <img src="C:\Users\HP NoteBook\Downloads\llmohal.jfif" alt="Lalitha Mahal Palace" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Lalitha Mahal Palace</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brindavan Gardens -->
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="garden.html">
+            <img src="C:\Users\HP NoteBook\Pictures\Camera Roll\mandya4-1.jpg" alt="Brindavan Gardens" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Brindavan Gardens</h3>
+        </div>
+      </div>
+    </div>
+    <h1 style="text-align: center;">Relegious & Spiritual Sites</h1>
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="ctemple.html">
+            <img src="C:\Users\HP NoteBook\Downloads\ctemple.jpg" alt="chamundeshwari temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Shree chamundeshwari Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="philomina.html">
+            <img src="C:\Users\HP NoteBook\Downloads\philomina.jfif" alt="philomina church" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">St. Philomina Church</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="shritemple.html">
+            <img src="C:\Users\HP NoteBook\Downloads\sritemple.jpg" alt="shrikanteshwara temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Shrikanteshwara Temple</h3>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>@ALL COPY RIGHTS ARE RESERVED 2025</p>
+  </footer>
+
+</body>
 </html>
