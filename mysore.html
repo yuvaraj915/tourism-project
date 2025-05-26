@@ -8,50 +8,54 @@
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
     }
+
     header, footer {
       color: black;
       background-color: aliceblue;
       padding: 1%;
       text-align: center;
     }
+
     main {
       padding: 20px;
     }
+
     .card-section-title {
       color: green;
     }
+
     .card-subtitle {
       font-family: 'Courier New';
     }
+
     .tour-row {
       display: flex;
       justify-content: center;
       margin-bottom: 30px;
     }
+
     .row-even {
       flex-direction: row-reverse;
     }
+
     .tour-card {
-      width: 600px;
+      width: 300px;
       background: white;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       margin: 0 20px;
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
     }
+
     .image-container {
-      width: 50%;
       position: relative;
     }
+
     .tour-image {
       width: 100%;
       display: block;
-      height: 100%;
-      object-fit: cover;
     }
+
     .top-overlay {
       position: absolute;
       top: 8px;
@@ -61,6 +65,7 @@
       justify-content: space-between;
       pointer-events: none;
     }
+
     .badge {
       background: white;
       color: green;
@@ -69,31 +74,21 @@
       padding: 4px 6px;
       border-radius: 4px;
     }
+
     .tour-info {
-      width: 50%;
       padding: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
+
     .state {
       color: #00aa88;
       font-size: 12px;
       font-weight: bold;
       margin: 0;
     }
+
     .title {
       font-size: 18px;
       margin: 4px 0 8px;
-    }
-    @media (max-width: 700px) {
-      .tour-card {
-        flex-direction: column;
-        width: 100%;
-      }
-      .image-container, .tour-info {
-        width: 100%;
-      }
     }
   </style>
 </head>
@@ -112,7 +107,7 @@
 
     <h1 style="text-align: center;">Historical & Architectural Marvels</h1>
 
-    <!-- Mysore Palace (Image Left) -->
+    <!-- Mysore Palace -->
     <div class="tour-row row-odd">
       <div class="tour-card">
         <div class="image-container">
@@ -130,7 +125,7 @@
       </div>
     </div>
 
-    <!-- Jaganmohan Palace (Image Right) -->
+    <!-- Jaganmohan Palace -->
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -148,7 +143,7 @@
       </div>
     </div>
 
-    <!-- Lalitha Mahal (Image Left) -->
+    <!-- Lalitha Mahal -->
     <div class="tour-row row-odd">
       <div class="tour-card">
         <div class="image-container">
@@ -166,7 +161,7 @@
       </div>
     </div>
 
-    <!-- Brindavan Gardens (Image Right) -->
+    <!-- Brindavan Gardens -->
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -183,11 +178,8 @@
         </div>
       </div>
     </div>
-
     <h1 style="text-align: center;">Relegious & Spiritual Sites</h1>
-    
-    <!-- Chamundeshwari Temple (Image Left) -->
-    <div class="tour-row row-odd">
+<div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
           <a href="ctemple.html">
@@ -203,8 +195,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Philomina Church (Image Right) -->
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -221,9 +211,7 @@
         </div>
       </div>
     </div>
-
-    <!-- Shrikanteshwara Temple (Image Left) -->
-    <div class="tour-row row-odd">
+    <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
           <a href="shritemple.html">
