@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Karnataka Tourism</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karnataka Tourism - KA Adventure</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url('falls.jpg') no-repeat center center/cover;
+      background: url('background.jpg') no-repeat center center/cover;
       color: white;
-      transition: background-image 1s ease-in-out;
-      height: 100vh;
+    }
+
+    header {
+      background-color: lightslategrey;
+      color: white;
+      padding: 20px;
+      text-align: left;
+      font-size: 24px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: lightslategray;
+      color: white;
+      padding: 1%;
+      text-align: center;
     }
 
     .header {
@@ -18,6 +39,7 @@
       align-items: center;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
+      margin-top: 20px;
     }
 
     .logo {
@@ -48,36 +70,65 @@
       margin-top: 5px;
       font-family: 'Arial', sans-serif;
     }
+
+    .content {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 10px 0;
+    }
+
+    ul li a {
+      color: white;
+      text-decoration: underline;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <img src="karnataka-logo.png" alt="Karnataka Government Logo" class="logo">
-    <div class="text-content">
-      <div class="title">Karnataka</div>
-      <div class="subtitle">One state. Many worlds.</div>
-      <div class="department">Department of Tourism</div>
-    </div>
+<header>
+  <img src="activelogo.jpeg" width="100" height="100" align="left">
+  <h1 style="text-align: center; font-style: oblique;">KA ADVENTURE</h1>
+  <nav>
+    <a href="home.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="service.html">SERVICE</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+</header>
+
+<div class="header">
+  <img src="karnataka-logo.png" alt="Karnataka Government Logo" class="logo">
+  <div class="text-content">
+    <div class="title">Karnataka</div>
+    <div class="subtitle">One state. Many worlds.</div>
+    <div class="department">Department of Tourism</div>
   </div>
+</div>
 
-  <script>
-    const images = [
-      'grs.jpeg',
-      'jaganmohan.jpg',
-      'background3.jpg',
-      'background4.jpg'
-    ];
+<div class="content">
+  <h2>Let's start your Journey with our plans,<br>Follow the instructions and begin a new Experience</h2>
+  <p>We provide complete details about all the tourist places in every district.<br>LET'S BEGIN...</p>
+  <p>Just select the district and explore the beauty of nature</p>
+  <h3>Select the District</h3>
+  <ul>
+    <li><a href="mandya.html">MANDYA</a></li>
+    <li><a href="mysore.html">MYSORE</a></li>
+  </ul>
+</div>
 
-    let index = 0;
-
-    function changeBackground() {
-      document.body.style.backgroundImage = `url('${images[index]}')`;
-      index = (index + 1) % images.length;
-    }
-
-    setInterval(changeBackground, 5000); // Change every 5 seconds
-  </script>
+<footer>
+  <p>@This website reserves all rights 2025</p>
+</footer>
 
 </body>
 </html>
