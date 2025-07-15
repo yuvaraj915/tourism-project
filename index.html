@@ -22,7 +22,7 @@ header img {
 header img:first-child {
   width: 100%;
   height: auto;
-  border-radius: 40px 40px 40px 40px; /* Curves only the bottom edges */
+  border-radius: 40px 40px 40px 0px; /* Curves only the bottom edges */
   box-shadow: 0 4px 16px rgba(0,0,0,0.08); /* Optional: adds a soft shadow */
 }
 .logo {
@@ -32,7 +32,7 @@ header img:first-child {
   width: 80px; /* Adjust size as needed */
   height: auto;
   z-index: 2;
-  border-radius: 40px 40px 40px 40px;
+  border-radius: 40px 40px 40px 40px;;
 }
 
     header img {
@@ -100,13 +100,54 @@ header img:first-child {
     .stars {
       color: gold;
     }
+    
+  .header-img {
+      width: 100%;
+      height: auto;
+      border-radius: 40px 40px 40px 40px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: opacity 0.5s;
+      position: relative;
+      z-index: 1;
+    }
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 80px;
+      height: auto;
+      z-index: 2;
+      border-radius: 40px 40px 40px 40px;
+    }
   </style>
+  <script>
+    // Automatic header image slider
+    document.addEventListener("DOMContentLoaded", function() {
+      const images = [
+        "mp.jpg",
+        "falls.jpg",
+        "krs2.webp"
+        
+      ];
+      let idx = 0;
+      const headerImg = document.getElementById("header-slider");
+      setInterval(function() {
+        idx = (idx + 1) % images.length;
+        headerImg.style.opacity = 0;
+        setTimeout(() => {
+          headerImg.src = images[idx];
+          headerImg.style.opacity = 1;
+        }, 500);
+      }, 3000);
+    });
+  </script>
 </head>
 <body>
-  <header>
-  <img src="mp.jpg" alt="image" />
-  <img src="activelogo.jpeg" alt="Logo" class="logo" />
-</header>
+  <header style="position:relative;">
+    <img id="header-slider" class="header-img" src="mp.jpg" alt="Header Image" />
+    <img src="activelogo.jpeg" alt="Logo" class="logo" />
+  </header>
+
   <div class="main-heading">
     <h1>KA ADVENTUTRE</h1>
     <p>... Try to explore the world!</p>
@@ -122,7 +163,7 @@ header img:first-child {
     <h2>TOP 5 PLACES MUST BE VISIT IN KARNATAKA</h2>
 
     <div class="tour">
-        <a href="palcedtails.html">
+        <a href="palace.html">
       <img src="mp.jpg" alt="palace" />
       <div class="tour-info">
       </a>
