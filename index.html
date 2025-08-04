@@ -14,24 +14,30 @@
       position: relative;
       text-align: center;
     }
+    
+header img {
+  width: 100%;
+  height: auto;
+}
+header img:first-child {
+  width: 100%;
+  height: auto;
+  border-radius: 40px 40px 40px 0px; /* Curves only the bottom edges */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08); /* Optional: adds a soft shadow */
+}
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 80px; /* Adjust size as needed */
+  height: auto;
+  z-index: 2;
+  border-radius: 40px 40px 40px 40px;;
+}
+
     header img {
       width: 100%;
       height: auto;
-    }
-    header img:first-child {
-      width: 100%;
-      height: auto;
-      border-radius: 40px 40px 40px 0px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    }
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 80px;
-      height: auto;
-      z-index: 2;
-      border-radius: 40px;
     }
     .main-heading {
       padding: 2rem;
@@ -68,7 +74,7 @@
       font-weight: bold;
     }
     .summertime {
-      background: radial-gradient(circle at center, gray, green, #1a1a1a);
+     background: radial-gradient(circle at center,gray, green, #1a1a1a);
       color: white;
       padding: 2rem;
     }
@@ -94,14 +100,24 @@
     .stars {
       color: gold;
     }
-    .header-img {
+    
+  .header-img {
       width: 100%;
       height: auto;
-      border-radius: 40px;
+      border-radius: 40px 40px 40px 40px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       transition: opacity 0.5s;
       position: relative;
       z-index: 1;
+    }
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 80px;
+      height: auto;
+      z-index: 2;
+      border-radius: 40px 40px 40px 40px;
     }
   </style>
   <script>
@@ -113,6 +129,7 @@
         "nagarahole1.jpg",
         "jaganmohan.jpg",
         "llmohal.jfif"
+        
       ];
       let idx = 0;
       const headerImg = document.getElementById("header-slider");
@@ -134,42 +151,42 @@
   </header>
 
   <div class="main-heading">
-    <h1 style="font-family:UrbanJungleDEMO.otf;">KA &nbsp; ADVENTURE</h1>
+    <h1 style="font-family:UrbanJungleDEMO.otf;">KA  &nbsp; ADVENTUTRE</h1>
     <p>... Try to explore the world!</p>
     <h2>Select District</h2>
     <select onchange="location=this.value;">
-      <option value="#">--Select District--</option>
-      <option value="chamarajanagar.html">Chamarajanagara</option>
+        <option value="#">--Select District--</option>
+        <option value="mandya.html">Mandya</option>
+        <option value="mysore.html">Mysuru</option>
       <option value="madikeri.html">Madikeri</option>
-      <option value="mandya.html">Mandya</option>
-      <option value="mysore.html">Mysuru</option>
-    </select>
+      <option value="chamarajanagar.html">Chamarajanagara</option>
+     </select>
   </div>
 
-  <div class="summertime">
+   <div class="summertime">
     <h2>TOP 5 PLACES MUST BE VISIT IN KARNATAKA</h2>
 
     <div class="tour">
-      <a href="palcedtails.html">
-        <img src="mp.jpg" alt="palace" />
-        <div class="tour-info">
-          <strong>Mysore palace</strong><br />
-          <p>Click on image to more info about the place</p>
-          <span class="stars">★★★★★</span>
-        </div>
+        <a href="palcedtails.html">
+      <img src="mp.jpg" alt="palace" />
+      <div class="tour-info">
       </a>
-    </div>
-
-    <a href="krs.html">
-      <div class="tour">
-        <img src="krs1.jfif" alt="KRS" />
-        <div class="tour-info">
-          <strong>Krishna Raja Sagara Dam</strong><br />
-          <p>Click on image to more info about the place</p>
-          <span class="stars">★★★★★</span>
-        </div>
+        <strong>Mysore palace</strong><br />
+        <p>Click on image to more info about the place</p>
+        <span class="stars">★★★★★</span> 
       </div>
+   </div>
+   <a href="krs.html">
+    <div class="tour">
+              <img src="krs1.jfif" alt="KRS" />
     </a>
+              <div class="tour-info">
+        <strong>Krishna Raja Sagara Dam</strong><br />
+        <p>click on image to more info about the place</p>
+        <span class="stars">★★★★★</span> 
+      </a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
