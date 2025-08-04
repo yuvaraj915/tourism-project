@@ -1,6 +1,7 @@
 <html>
 <head>
-    <title>Sand Museum</title>
+    <title>Sand meuseum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <style>
     header{
@@ -21,8 +22,8 @@
         bottom: 0;
     }
     p{
-        text-align: justify;
-        line-height: 1.8;
+        text-align: left;
+        line-height: 1.0;
         margin-bottom: 16px;     
     }
     h2{
@@ -35,35 +36,51 @@
         max-width: 100%;
         margin:auto;
     }
-    
+    /* Responsive Google Maps */
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
     <header>
-        <h1>Sand Museum</h1>
+        <h1> Sand meuseum</h1>
+          
     </header>
     <body>
+         <h1 style="color: green;">Ticket Fare</h1>
+         <p>&#8377;40 per person for Adults</p>
+         <p></p>&#8377;20 per person for Children </p>
+         
+         <!-- /*optional  */ -->
+         <!-- <div>children &#58;&#8377;60&#40;Below10-12years&#41; </div>
+         <div></div>adults &#58;&#8377;120</div>
+         <div> child &#58; &#8377;Free&#40;Below5years&#41;</p></div> -->
 
-        <img src="sand2.jpg" alt="Sand Museum" width="100%" >
-        <h1>Sand Museum</h1>
-        <p>The Mysore Sand Sculpture Museum is India's first sand sculpture museum, showcasing a collection of over 150 intricately crafted sand sculp-tures spread across 13,500 sq ft. Located on Chamundi Hills Road, it features a variety of themes, in-cluding Mysore's cultural heritage, wildlife, mythology, and more. The museum is open daily from 8:30 AM to 6:30 PM and is easily ac-cessible by road.</p>
-        <h1>Key Details:</h1>
-        <ul>
-            <h2>
-            <li>First of its kind: It is the first sand sculpture museum in India.</li>
-            <li>Artist: The museum was established by sand artist M.N. Gowri.</li>
-            <li>Sculptures: It houses over 150 sand sculptures, created using over 115 truckloads of sand.
-            <li>Themes: Exhibits are categorized under various themes such as heritage, culture, wildlife, mythology, and fairy tales.</li> 
-            <li>Location: The museum is situated on Chamundi Hills Road, about 4 km from Mysore city center.
-            </li>
-            <li>Timings: Open daily from 8:30 AM to 6:30 PM.</li>
-            <li>Entry Fee: The entry fee is INR 60 per person</li>
-            <li>Time to Explore: Approximately 1 to 2 hours is recommended to explore the museum.</li>
-            <li>Nearby Attractions: Chamundi Hills is 7 km away, and other attractions like the Mysore Palace and the Zoo are nearby.</li>
-            <li>Preservation: The sculptures are protected by temporary roofs to shield them from rain.</li>              
-          <li>Unique Experience: The museum offers a unique artistic experience with intricate sand carvings and diverse themes.</li>
-        </h2>
-    </ul>
-        </body>
-    <footer>
+          <h2 style="color: green;">Opening dates and timings </h2>
+          <p>Sunday&#58;8&#58;30AM-6&#58; 8;30PM</p>
+          <p>Monday&#58;8&#58;30AM-6&#58;30PM</p>
+          <p>Tuesday&#58;8&#58;30AM-6&#58;30PM</p>
+          <p>Wednesday&#58;8&#58;30AM-6&#58;30PM</p>
+          <p>Thursday&#58;8&#58;30AM-6&#58;30PM</p>
+          <p>Friday&#58;8&#58;30AM-6&#58;30PM</p>
+          <p>Saturday&#58;8&#58;30AM-6&#58;30PM</p>
+          <h4 style="color: green;"> Parking and Toilet facility</h4>
+          <!-- /*responsive google maps */ -->
+    <div> parking facility  <span style="color: red;">No  information</span> </div>
+    <div>toilet facility <span style="color: red;">No Information</span> </div>
+
+          <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2756.5166475392707!2d76.68201772403292!3d12.295354874479107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf702a2eb4f7a5%3A0xa9f4ec7cb24f2031!2sSand%20Museum%20Mysuru!5e0!3m2!1sen!2sin!4v1754152874331!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+           <a href="https://en.wikipedia.org/wiki/Mysore_Sand_Sculpture_Museum" target="_blank" class="nav-link">
+       More details <span class="external-icon">&#x2197;</span>
+    </a>
+
+
+<footer>
         <p style="text-align: center;">All copy rights reserved</p>
     </footer>
 </html>
