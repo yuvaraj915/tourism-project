@@ -4,6 +4,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <style>
+    table {
+      width: 60%;
+      border-collapse: collapse;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+    caption {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #0099ff;
+      color: white;
+    }
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+    td a {
+      color: #007bff;
+      text-decoration: underline;
+    }
     header{
         background-color: #f2f2f2;
         padding: 10px;
@@ -53,10 +80,33 @@
     </header>
     <body>
          <h1 style="color: green;">Ticket Fare</h1>
-         <!-- <div>Children &#58; &#8377;20 </div>
-         <div></div>Adults &#58;&#8377;50</div> -->
-         <!-- <div> child &#58; &#8377;30 &#40;Below10-18years&#41;</p></div> -->
-
+        <table>
+    <caption>GRS Park Rates</caption>
+    <thead>
+      <tr>
+        <th>Parks</th>
+        <th>Adult</th>
+        <th>Child (3 – 4.5 ft)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GRS Fantasy Park</td>
+        <td><a href="#">₹1297</a></td>
+        <td><a href="#">₹1167</a></td>
+      </tr>
+      <tr>
+        <td>GRS Snow Park</td>
+        <td><a href="#">₹597</a></td>
+        <td><a href="#">₹497</a></td>
+      </tr>
+      <tr>
+        <td>GRS UpDown</td>
+        <td><a href="#">₹447</a></td>
+        <td><a href="#">₹447</a></td>
+      </tr>
+    </tbody>
+  </table>
           <h2 style="color: green;">Opening dates and timings </h2>
           <p>Sunday&#58;Holiday</p>
           <p>Monday&#58;10&#58;30AM-6&#58;00PM</p>
@@ -81,3 +131,4 @@
         <p style="text-align: center;">All copy rights reserved</p>
     </footer>
 </html>
+
