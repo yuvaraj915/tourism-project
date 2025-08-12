@@ -98,13 +98,140 @@
       color: blue;
       text-decoration: none;
     }
-  </style>
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
 </head>
 <body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
 
   <header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "gandhi park": {
+      description: "Click here to khow more about mysore palace",
+      link: ""
+    },
+    "shivamogga zoo & safari": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "freedom park old shimoga jail": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "siddeshwara nagara park": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "gandhi nagar park": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "shivappa nayaka palace museum": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "gajanuru dam": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "gopi shetti koppa kere": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "sacred heart cathedral, shivamogga": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "shree baala subramanya swamy temple, guddekal": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    "sakrebyle elephant camp": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },  
+    "puradalu check dam": {
+      description: "Click here to know more about mysore palace",
+      link: ""
+    },
+    
+    };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
 
   <main>
     <h1 class="card-section-title">WELCOME TO SHIVAMOGGA DISTRICT</h1>
@@ -238,7 +365,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title"> ಗೋಪಿ ಶೆಟ್ಟಿ ಕೊಪ್ಪ ಕೆರೆ</h3>
+        <h3 class="title">Gopi Shetti Koppa Lake</h3>
         </div>
       </div>
     </div>
