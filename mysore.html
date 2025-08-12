@@ -16,6 +16,7 @@
       background-color: aliceblue;
       padding: 1%;
       text-align: center;
+      
     }
 
     main {
@@ -92,6 +93,38 @@
       font-size: 18px;
       margin: 4px 0 8px;
     }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <body>
@@ -104,14 +137,118 @@
       'google_translate_element'
     );
   }
-</script>
+  </script>
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
 
+
   <header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+
+<script>
+  const places = {
+    mysore_palace: {
+      description: "Click here to khow more about mysore palace",
+      link: "palacedetails.html"
+    },
+    
+    "chamundi hills": {
+      description: "click here to know more about chamundi hills",
+      link: "chamundidetails.html"
+    },
+    "st philomena church": {
+      description: "Click here to know more about St Philomena Church",
+      link: "philominadetails.html"
+    },
+    "railway museum": {
+      description: "Click here to know more about Railway Museum",
+      link: "museumdetalis.html"
+    },
+    "jaganmohan palace": {
+      description: "Click here to know more about Jaganmohan Palace",
+      link: "jmpdetails.html"
+    },  
+    "shree chamundeshwari temple": {
+      description: "Click here to know more about Shree Chamundeshwari Temple",
+      link: "chamundidetails.html"
+    },
+    "shrikanteshwara temple": {
+      description: "Click here to know more about Shrikanteshwara Temple",
+      link: "sktdetails.html"
+    },
+    "mysore zoo": {
+      description: "Click here to know more about Mysore Zoo",
+      link: "zoodetails.html"
+    },
+    "karanji lake": {
+      description: "Click here to know more about Karanji Lake",
+      link: "karanjidetails.html"
+    },
+    "nagarahole national park": {
+      description: "Click here to know more about Nagarahole National Park",
+      link: "nagaraholedetails.html"
+    },
+    "rail museum": {
+      description: "Click here to know more about Railway Museum",
+      link: "museumdetalis.html"
+    },
+    "grs fantasy park": {
+      description: "Click here to know more about GRS Fantasy Park",
+      link: "grsdetails.html"
+    },
+    "shuka vana": {
+      description: "Click here to know more about Shuka Vana",
+      link: "shukadetails.html"
+    },
+    "devaraja market": {
+      description: "Click here to know more about Devaraja Market",
+      link: "devarajadetails.html"
+    },
+    "kukkralli lake": {
+      description: "Click here to know more about Kukkralli Lake",
+      link: "kukkrallidetails.html"
+    },
+    "sand sculpture museum": {
+      description: "Click here to know more about Sand Sculpture Museum",
+      link: "sanddetails.html"
+    },
+    "payana": {
+      description: "Click here to know more about Payana",
+      link: "payanadetails.html"
+    },
+};
+
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
 
   <main>
     <h1 class="card-section-title">WELCOME MYSORE DISTRICT</h1>
@@ -121,8 +258,7 @@
     </h2>
 
     <h1 style="text-align: center;">Historical & Architectural Marvels</h1>
-
-    <!-- Mysore Palace -->
+ <!-- Mysore Palace -->
     <div class="tour-row row-odd">
       <div class="tour-card">
         <div class="image-container">
