@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+   <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=divice-width,initial-scale=1.0">
+<head>
+  <title>UDUPI DISTRICT</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: aliceblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
+      color: green;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+
+    
+  </style>
+</head>
+<body>
+<div id="google_translate_element"></div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+  </header>
+  <script>
+  const places = {
+   "arbi falls": {
+      description: "Click here to khow more about mysore palace",
+      link: "arbifallsdetails.html"
+    },
+    "malpe beach": {
+      description: "Click here to know more about malpe beach",
+      link: "malpebeachdetails.html"
+    },
+    "bengre beach delta point": {
+      description: "Click here to know more about bengre beach delta point",
+      link: "bengrebeachdeltapointdetails.html"
+    },
+    "mattu beach": {
+      description: "Click here to know more about mattu beach",
+      link: ""
+    },
+    "bengre beach": {
+      description: "Click here to know more about bengre beach",
+      link: ""
+    },
+    "kadike beach": {
+      description: "Click here to know more about kadike beach",
+      link: ""
+    },
+    "muloor beach": {
+      description: "Click here to know more about muloor beach",
+      link: ""
+    },
+    "kapu beach": {
+      description: "Click here to know more about kapu beach",
+      link: ""
+    },
+    "blue whale beach": {
+      description: "Click here to know more about blue whale beach",
+      link: ""
+    },
+    "virgin beach": {
+      description: "Click here to know more about virgin beach",
+      link: ""
+    },
+    "kadiyali mahishamardini temple": {
+      description: "Click here to know more about kadiyali mahishamardini temple",
+      link: ""
+    },
+    "bailoor mahishamardini temple": {
+      description: "Click here to know more about bailoor mahishamardini temple",
+      link: ""
+    },
+    "shri indrani panchadurga parameshwari temple": {
+      description: "Click here to know more about shri indrani panchadurga parameshwari temple",
+      link: ""
+    },
+    "sri vadabhandeshwara temple": {
+      description: "Click here to know more about sri vadabhandeshwara temple",
+      link: ""
+    },
+    "udupi shri krishna matha": {
+      description: "Click here to know more about udupi shri krishna matha",
+      link: ""
+    },
+    "sri venugopala temple": {
+      description: "Click here to know more about sri venugopala temple",
+      link: ""
+    },
+
+    "mahatobhaara sri mahishamardini temple": {
+      description: "Click here to know more about mahatobhaara sri mahishamardini temple",
+      link: ""
+    },
+    "daria bahadurgad fort": {
+      description: "Click here to know more about daria bahadurgad fort",
+      link: ""
+    },
+    "bhujanga park": {
+      description: "Click here to know more about bhujanga park",
+      link: ""
+    },
+    "aasare beach park": {
+      description: "Click here to know more about aasare beach park",
+      link: ""
+    },
+    "st.mary's island": {
+      description: "Click here to know more about st.mary's island",
+      link: ""
+    },
+    "smriti bhavan museum": {
+      description: "Click here to know more about smriti bhavan museum",
+      link: ""
+    },
+    "the riverside kuthpady": {
+      description: "Click here to know more about the riverside kuthpady",
+      link: ""
+    },
+    "water adventures kemmannu": {
+      description: "Click here to know more about water adventures kemmannu",
+      link: ""
+    },
+    "malpe sea walk": {
+      description: "Click here to know more about malpe sea walk",
+      link: ""
+     },
+    
+};
+
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
+
+  <main>
+    <h1 class="card-section-title">WELCOME UDUPI DISTRICT</h1>
+    <h2 class="card-subtitle">
+      Udupi is a coastal district in the Indian state of Karnataka, known for its rich cultural heritage, beautiful temples, and stunning beaches. The district is famous for its cuisine, particularly Udupi cuisine, which is vegetarian and has a unique blend of flavors. Udupi is also home to several educational institutions and is a hub for traditional Indian arts and crafts.</h2>
+    
+      <h1 style="text-align: center;">Falls</h1>
+   <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Arbi Falls" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Arbi Falls</h3>
+        </div>
+      </div>
+    </div>
+     <h1 style="text-align: center;">Beaches</h1>
+   <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Malpe Beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Malpe Beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bengre Beach Delta Point" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Bengre Beach Delta Point</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Mattu Beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Mattu Beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bengre Beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Bengre Beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Muloor beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Muloor beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kadike Beach " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Kadike Beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kapu Beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Kapu Beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Blue whale beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Blue whale beach</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Virgin Beach" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Virgin Beach</h3>
+        </div>
+      </div>
+    </div>
+    <h1 style="text-align: center;">Spiritual places</h1>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kadiyali Mahishamardini Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Kadiyali Mahishamardini Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bailoor Mahishamardini Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Bailoor Mahishamardini Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Indrani Panchadurga Parameshwari Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Shri Indrani Panchadurga Parameshwari Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sri Vadabhandeshwara Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Sri Vadabhandeshwara Temple</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Udupi Shri Krishna Matha" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Udupi Shri Krishna Matha</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sri Venugopala Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Sri Venugopala Temple</h3>
+        </div>
+      </div>
+      </div>
+<div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Mahatobhaara Sri Mahishamardini temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Mahatobhaara Sri Mahishamardini temple</h3>
+        </div>
+      </div>
+      </div>
+      <h1 style="text-align: center;">Fort</h1>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Daria Bahadurgad Fort" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Daria Bahadurgad Fort</h3>
+        </div>
+      </div>
+      </div>
+       <h1 style="text-align: center;">Parks</h1>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bhujanga Park" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Bhujanga Park</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Aasare Beach Park" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Aasare Beach Park</h3>
+        </div>
+      </div>
+      </div>
+      <h1 style="text-align: center;">Island</h1>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="St.Mary's Island" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">St.Mary's Island</h3>
+        </div>
+      </div>
+      </div>
+       <h1 style="text-align: center;">Museum</h1>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Smriti Bhavan Museum" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Smriti Bhavan Museum</h3>
+        </div>
+      </div>
+      </div>
+       <h1 style="text-align: center;">Others</h1>
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="The Riverside Kuthpady" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">The Riverside Kuthpady</h3>
+        </div>
+      </div>
+      </div>
+       
+      <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Water Adventures Kemmannu" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Water Adventures Kemmannu</h3>
+        </div>
+      </div>
+      </div>
+       <div class="tour-row row-odd">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Malpe Sea Walk" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+          <h3 class="title">Malpe Sea Walk</h3>
+        </div>
+      </div>
+      </div>
+
+    
+    <footer>
+    <p>@ALL COPY RIGHTS ARE RESERVED 2025</p>
+  </footer>
+
+</body>
+</html>
