@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BAGALKOTE DISTRICT</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: skyblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
+      color: green;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
+    }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
+</head>
+<body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "badami caves": {
+      description: "Click here to khow more about Badami Caves",
+      link: ""
+    },
+    "aihole":{
+        description:"Click here to khow more about Aihole ",
+        link:""
+    },
+    "pattadkal":{
+        descrption:"Click here to know more about Pattadakal",
+        link:""
+    },
+    "mahakuta temple":{
+        description:"Click here to know more about Mahakuta Temple",
+        link:""
+    },
+    "jyothirlinga temple group":{
+        description:"Click here to know more about Jyothirlinga Temple Group",
+        link:""
+    },
+    "banashankari temple,badami":{
+        description:"Click here to know more about Banashankari Temple, Badami",
+        link:""
+    },
+    "bhoothanatha temple":{
+        description:"Click here to know more about Bhoothanatha Temple (Badami Lake)",
+        link:""
+    },
+    "lad khan temple":{
+        description:"Click here to know more about Lad Khan Temple (Aihole)",
+        link:""
+    },
+    "durga temple":{
+        description:"Click here to know more about Durga Temple (Aihole)",
+        link:""
+    },
+    "kudala sangama":{
+        description:"Click here to know more about Kudala Sangama",
+        link:""
+    },
+    "public garden nagaravana":{
+        description:"Click here to know more about Public Garden Nagaravana",
+        link:""
+    },
+    "agastya lake":{
+        description:"Click here to know more about Agastya Lake (Badami)",
+        link:""
+    },
+    "bhuthanatha gudi":{
+        description:"Click here to know more about Bhuthanatha Gudi Surroundings",
+        link:""
+    },
+    "jamakhandi (patwardan palace)":{
+        description:"Click here to know more about Jamakhandi (Patwardhan Places)",
+        link:""
+    },
+    "ravan phadi":{
+        description:"Click here to know more about Ravan Phadi",
+        link:""
+    },
+    "badami fort":{
+        description:"Click here to know more about Badami Fort",
+        link:""
+    },
+    "sangameshwara temple":{
+        description:"Click here to know more about Sangameshwara Temple",
+        link:""
+    },
+    "mallikarjuna temple":{
+        description:"Click here to know more about Mallikarjuna Temple (Aihole)",
+        link:""
+    },
+    "mahakuteshwara temple":{
+        description:"Click here to know more about Mahakuteshwara Temple (Mahakuta)",
+        link:""
+    },
+    "jain meguti temple":{
+        description:"Click here to know more about Jain Meguti Temple (Aihole)",
+        link:""
+    },
+    "virupaksha temple":{
+        description:"Click here to know more about Virupaksha Temple (Aihole)",
+        link:""
+    },
+    "mudhol":{
+        description:"Click here to know more about Mudhol",
+        link:""
+    },
+    "gajendragad fort":{
+        description:"Click here to know more about Gajendragad Fort (Border area)",
+        link:""
+    },
+    "badami": {
+        description: "Click here to know more about Badami",
+        link: ""
+    },
+
+
+    };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
+
+  <main>
+    <h1 class="card-section-title">WELCOME TO BHAGALKOTE DISTRICT</h1>
+    <h2 class="card-subtitle">Bagalkote is located in Northern Karnatraka, is land of rich and history, culture, and Architectural marvels is home to world-famous BAGABadami caves temple ,Aihole, and Pattadka. </h2> 
+
+    <h1 style="text-align: center;">Historical and Heritage Sites</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Badami Cave" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Badami Caves </h3>
+        </div>
+      </div>
+    </div>
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Aihole" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Aihole </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Pattadakal" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Pattadakal </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Mahakuta Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">mahakuta Temple </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Jyothirlinga Temple Group] class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Jyothirlinga Temple Group</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Banashankari Temple,Badami" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Banashankari Temple,Badami </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bhoothanatha Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Bhoothanatha Temeple (Badami Lake) </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Lad Khan Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Lad Khan Temple (Aihole)</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Durga Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Durga Temple (Aihole)</h3>
+        </div>
+      </div>
+    </div>
+     <h1 style="text-align: center;"> Natural Attraction</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kudala Sangama" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Kudala Sangama</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Public Garden Nagaravana" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Public Garden Nagaravana </h3>
+        </div>
+      </div>
+    </div>
+     <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Agastya lake" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Agastya lake (Badami) </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bhuthanatha gudi" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Bhuthanatha Gudi Surroundigs </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Jamakhandi" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Jamakhandi (Patwardhan Places)</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Ravana Phadi" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Ravan Phadi </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Badami Fort" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Badami Fort </h3>
+        </div>
+      </div>
+    </div>
+    <h1 style="text-align: center;"> Religious Places</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sangameshwara Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Sangameshwara Temple </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Mallikarjuna Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Mallikarjuna Temple (Aihole) </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Mahakuteshwara Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Mahakuteshwara Temple (Mahakuta) </h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Jain MEeuti Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Jain Meguti Temple (Aihole)</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Virupaksha Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Virupaksha Temple (Aihole)</h3>
+        </div>
+      </div>
+      </div>
+      <h1 style="text-align: center;">Others</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Mudhol" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Mudhol</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Gajendragad Fort" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Gajendragad Fort (Border area) </h3>
+        </div>
+      </div>
+      </div>
+      
+
+
+
+     <a href="#top" class="back-to-top">Back to Top</a>
+     </main>
+
+  <footer>
+    <p>footer</p>
+  </footer>
+
+</body>
+</html>
