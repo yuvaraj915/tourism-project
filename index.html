@@ -14,26 +14,25 @@
       position: sticky;
       text-align: center;
     }
-    
-header img {
-  width: 100%;
-  height: 300px;
-}
-header img:first-child {
-  width: 100%;
-  height: 300px;
-  border-radius: 40px 40px 40px 0px; /* Curves only the bottom edges */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08); /* Optional: adds a soft shadow */
-}
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 80px; /* Adjust size as needed */
-  height: auto;
-  z-index: 2;
-  border-radius: 40px 40px 40px 40px;;
-}
+    header img {
+      width: 100%;
+      height: auto;
+    }
+    header img:first-child {
+      width: 100%;
+      height: auto;
+      border-radius: 40px 40px 40px 0px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 80px;
+      height: auto;
+      z-index: 2;
+      border-radius: 40px;
+    }
     .hamburger {
       position: absolute;
       top: 25px;
@@ -49,24 +48,12 @@ header img:first-child {
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-
-    .hamburger span:nth-child(1) {
-      background-color: green;
-    }
-
-    .hamburger span:nth-child(2) {
-      background-color: green;
-    }
-
-    .hamburger span:nth-child(3) {
-      background-color: green;
-    }
-
     .hamburger span {
       width: 25px;
       height: 4px;
       border-radius: 2px;
       transition: all 0.3s ease;
+      background-color: green;
     }
     .menu {
       display: none;
@@ -81,7 +68,6 @@ header img:first-child {
       min-width: 150px;
       overflow: hidden;
     }
-
     .menu a {
       display: block;
       padding: 12px 16px;
@@ -90,20 +76,12 @@ header img:first-child {
       font-weight: bold;
       border-bottom: 1px solid #e0e0e0;
     }
-
     .menu a:last-child {
       border-bottom: none;
     }
-
     .menu a:hover {
       background-color: #d4edda;
       color: #1a472a;
-    }
-
-
-.header img {
-      width: 100%;
-      height: 300px;
     }
     .main-heading {
       padding: 2rem;
@@ -119,30 +97,13 @@ header img:first-child {
       font-style: italic;
       margin-top: 0.5rem;
     }
-    .cta-button {
-      background-color: red;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      font-weight: bold;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-    .features {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      text-align: center;
-    }
-    .feature {
-      font-weight: bold;
-    }
     .summertime {
-     background: radial-gradient(circle at center,gray, green, #1a1a1a);
+      background: radial-gradient(circle at center, gray, green, #1a1a1a);
       color: white;
       padding: 2rem;
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
     }
     .tour {
       background: white;
@@ -166,37 +127,81 @@ header img:first-child {
     .stars {
       color: gold;
     }
-    
-  .header-img {
+    .header-img {
       width: 100%;
       height: 300px;
-      border-radius: 40px 40px 40px 40px;
+      border-radius: 40px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       transition: opacity 0.5s;
       position: relative;
       z-index: 1;
     }
-    .logo {
+
+    /* --- New Dropdown With Search + Radio --- */
+    .dropdown {
+      position: relative;
+      width: 280px;
+      margin: 1rem auto;
+    }
+    .dropdown-btn {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .dropdown-content {
+      display: none;
       position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 80px;
-      height: auto;
-      z-index: 2;
-      border-radius: 40px 40px 40px 40px;
+      background: #fff;
+      width: 100%;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 5px;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .dropdown-content input[type="text"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 15px;
+      display: block;
+      text-align: center;
+    }
+    .option-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .option-item:last-child {
+      border-bottom: none;
+    }
+    .option-item:hover {
+      background: #f5f5f5;
+    }
+    .option-item input[type="radio"] {
+      accent-color: #007bff;
+      transform: scale(1.2);
     }
   </style>
   <script>
-    // Automatic header image slider
+    // Header slider
     document.addEventListener("DOMContentLoaded", function() {
-      const images = [
-        "mp.jpg",
-        "falls.jpg",
-        "nagarahole1.jpg",
-        "muredeshwaraimg.jpg"
-      
-        
-      ];
+      const images = ["mp.jpg", "falls.jpg", "nagarahole1.jpg", "jaganmohan.jpg", "llmohal.jfif"];
       let idx = 0;
       const headerImg = document.getElementById("header-slider");
       setInterval(function() {
@@ -212,6 +217,31 @@ header img:first-child {
       const menu = document.getElementById("menu");
       menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
+
+    // Dropdown functions
+    function toggleDropdown() {
+      let dropdown = document.getElementById("dropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+    function filterFunction() {
+      let input = document.getElementById("search").value.toUpperCase();
+      let items = document.querySelectorAll(".option-item");
+      items.forEach(item => {
+        let text = item.innerText.toUpperCase();
+        item.style.display = text.indexOf(input) > -1 ? "" : "none";
+      });
+    }
+    function selectOption(el) {
+      document.querySelector(".dropdown-btn").innerText = el.value;
+      document.getElementById("dropdown").style.display = "none";
+      // Redirect to district page if needed
+      window.location.href = el.getAttribute("data-link");
+    }
+    window.onclick = function(event) {
+      if (!event.target.closest('.dropdown')) {
+        document.getElementById("dropdown").style.display = "none";
+      }
+    }
   </script>
 </head>
 <body>
@@ -219,12 +249,8 @@ header img:first-child {
     <img id="header-slider" class="header-img" src="mp.jpg" alt="Header Image" />
     <img src="activelogo.jpeg" alt="Logo" class="logo" />
     <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
-
-    <!-- Dropdown menu -->
     <div class="menu" id="menu">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -234,51 +260,54 @@ header img:first-child {
   </header>
 
   <div class="main-heading">
-    <h1 style="font-family:Urban Jungle";>KA  &nbsp; ADVENTUTRE</h1>
+    <h1 style="font-family:Urban Jungle">KA ADVENTURE</h1>
     <p>... Try to explore the world!</p>
     <h2>Select District</h2>
-    <select onchange="location=this.value;">
-        <option value="#">--Select District--</option>
-        <option value="mandya.html">Mandya</option>
-        <option value="mysore.html">Mysuru</option>
-      <option value="madikeri.html">Madikeri</option>
-      <option value="chamarajanagar.html">Chamarajanagara</option>
-      <option value="bengaluru.html">Bengaluru</option>
-      <option value="chikmagaluru.html">ChikaMagaluru</option>
-      <option value="hassan.html">Hassan</option>
-      <option value="shivamogga.html">Shivamogga</option>
-      <option value="mangaluru.html">Mangaluru</option>
-      <option value="ramanagara.html">Ramanagara</option>
-      <option value="udupi.html">Udupi</option>
-      <option value="Tumakuru.html">Tumakuru</option>
-     </select>
+
+    <!-- 🔥 Replaced old <select> with new dropdown -->
+    <div class="dropdown">
+      <div class="dropdown-btn" onclick="toggleDropdown()">--Select District--</div>
+      <div class="dropdown-content" id="dropdown">
+        <input type="text" id="search" placeholder="Search district..." onkeyup="filterFunction()">
+
+        <label class="option-item">Mandya <input type="radio" name="district" onclick="selectOption(this)" value="Mandya" data-link="mandya.html"></label>
+        <label class="option-item">Mysuru <input type="radio" name="district" onclick="selectOption(this)" value="Mysuru" data-link="mysore.html"></label>
+        <label class="option-item">Madikeri <input type="radio" name="district" onclick="selectOption(this)" value="Madikeri" data-link="madikeri.html"></label>
+        <label class="option-item">Chamarajanagara <input type="radio" name="district" onclick="selectOption(this)" value="Chamarajanagara" data-link="chamarajanagar.html"></label>
+        <label class="option-item">Bengaluru <input type="radio" name="district" onclick="selectOption(this)" value="Bengaluru" data-link="bengaluru.html"></label>
+        <label class="option-item">Chikkamagaluru <input type="radio" name="district" onclick="selectOption(this)" value="Chikkamagaluru" data-link="chikmagaluru.html"></label>
+        <label class="option-item">Hassan <input type="radio" name="district" onclick="selectOption(this)" value="Hassan" data-link="hassan.html"></label>
+        <label class="option-item">Shivamogga <input type="radio" name="district" onclick="selectOption(this)" value="Shivamogga" data-link="shivamogga.html"></label>
+        <label class="option-item">Mangaluru <input type="radio" name="district" onclick="selectOption(this)" value="Mangaluru" data-link="mangaluru.html"></label>
+        <label class="option-item">Ramanagara <input type="radio" name="district" onclick="selectOption(this)" value="Ramanagara" data-link="ramanagara.html"></label>
+        <label class="option-item">Udupi <input type="radio" name="district" onclick="selectOption(this)" value="Udupi" data-link="udupi.html"></label>  
+        <label class="option-item">Tumakuru <input type="radio" name="district" onclick="selectOption(this)" value="Tumakuru" data-link="tumakuru.html"></label>
+    </div>
+    </div>
   </div>
 
-   <div class="summertime">
-    <h2>TOP 5 PLACES MUST  VISIT IN KARNATAKA</h2>
-
+  <div class="summertime">
+    <h2>TOP 5 PLACES MUST VISIT IN KARNATAKA</h2>
     <div class="tour">
-        <a href="palcedtails.html">
-      <img src="mp.jpg" alt="palace" />
-      <div class="tour-info">
+      <a href="palcedtails.html">
+        <img src="mp.jpg" alt="palace" />
       </a>
+      <div class="tour-info">
         <strong>Mysore palace</strong><br />
         <p>Click on image to more info about the place</p>
         <span class="stars">★★★★★</span> 
       </div>
-   </div>
-   <a href="krs.html">
+    </div>
     <div class="tour">
-              <img src="krs1.jfif" alt="KRS" />
-    </a>
-              <div class="tour-info">
+      <a href="krs.html">
+        <img src="krs1.jfif" alt="KRS" />
+      </a>
+      <div class="tour-info">
         <strong>Krishna Raja Sagara Dam</strong><br />
         <p>click on image to more info about the place</p>
         <span class="stars">★★★★★</span> 
-      </a>
       </div>
     </div>
   </div>
-  
 </body>
 </html>
