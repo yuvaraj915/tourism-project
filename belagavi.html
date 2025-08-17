@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BELAGAVI DISTRICT</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: skyblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
+      color: green;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
+    }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
+</head>
+<body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+   "belagavi fort":{
+    description:"Click here to know more about Brlagavi Fort",
+    link:""
+   },
+    "lake fort":{
+    description:"Click here to know more about Lake Fort",
+    link:""
+    },
+    "shri kapileshwara swamy temple":{
+      description: "Click here to know more about Shri Kapileshwara Swamy Temple",
+        link: ""    
+    },
+    "military shri mahadeva temple":{
+      description: "Click here to know more about Military Shri Mahadeva Temple",
+      link: ""
+    },
+    "ancient shri kamala basadi":{
+      description: "Click here to know more about Ancient Shri Kamala Basadi",
+      link: ""
+    },
+    "shri harimandir(Parampujya shri kalavathi devi) temple":{
+      description: "Click here to know more about Shri Harimandir(Parampujya Shri Kalavathi Devi) Temple",
+      link: ""
+    },
+    "kitwad waterfall":{
+      description: "Click here to know more about Kitwad Waterfall",
+      link: ""
+    },
+    "rakkasakoppa dam":{
+      description: "Click here to know more about Rakkasakoppa Dam",
+      link: ""
+    },
+    "yellur":{
+      description: "Click here to know more about Yellur",
+      link: ""
+    },
+    "yashneesh fun world":{
+      description: "Click here to know more about Yashneesh Fun World",
+      link: ""
+    },
+    "military animal park":{
+      description: "Click here to know more about Military Animal Park",
+      link: ""
+    },
+    "tiger safari":{
+      description: "Click here to know more about Tiger Safari",
+      link: ""
+    },
+    "ramakrishna mission ashrama":{
+      description: "Click here to know more about Ramakrishna Mission Ashrama",
+      link: ""
+    },
+    "shri paramartha nikethana":{
+      description: "Click here to know more about Shri Paramartha Nikethana",
+      link: ""
+    },
+    "shri military durgadevi temple":{
+      description: "Click here to know more about Shri Military Durgadevi Temple",
+      link: ""
+    },
+    "st. mary's church belagavi":{
+      description: "Click here to know more about St. Mary's Church Belagavi",
+      link: ""
+    },
+
+};
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
+
+  <main>
+    <h1 class="card-section-title">WELCOME TO BELAGAVI DISTRICT</h1>
+    <h2 class="card-subtitle">Belagavi is known as Belgaum, is a picturesque city in north karnataka that blends history,culture,and natural beauty. It is home majestic Belahgavi Fort</h2> 
+
+    <h1 style="text-align: center;">Forts</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Belagavi Fort" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Belagavi Fort</h3>
+        </div>
+      </div>
+    </div>
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Lake Fort" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Lake Fort</h3>
+        </div>
+      </div>
+    </div>
+    
+    <h1 style="text-align: center;">Spirtual Places </h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Kapileshwara Swamy Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Kapileshwara Swamy Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Military Shri Mahadeva Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Military Shri Mahadeva Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Ancient Shri Kamala Basadi" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Ancient Shri Kamala Basadi</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Harimandir(Parampujya Shri Kalavathi Devi) Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Harimandir(Parampujya Shri Kalavathi Devi) Temple</h3>
+        </div>
+      </div>
+    </div>
+     <h1 style="text-align: center;">Waterfalls & Dams</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kitwad Waterfall" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Kitwad Waterfall</h3>
+        </div>
+      </div>
+      </div>
+    
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="rakkasakoppa Dam" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Rakkasakoppa Dam</h3>
+        </div>
+      </div>
+      </div>
+      <h1 style="text-align: center;">Others</h1>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Yellur" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Yellur</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Yashneesh Fun World" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Yashneesh Fun World</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Militari Animal Parrk" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Military Animal Park</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Tiger Safari" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Tiger Safari</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Ramakrishna Mission Ashrama" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Ramakrishna MIssion Ashrama</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sri Paramartha Nikethana" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Paramartha Nikethana</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Military Durgadevi Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Military Durgadevi Temple</h3>
+        </div>
+      </div>
+      </div>
+      <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="St. Mary's Church Belagavi" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">St. Mary's Church Belagavi</h3>
+        </div>
+      </div>
+      </div>
+    
+
+
+<a href="#top" class="back-to-top">Back to Top</a>
+     </main>
+
+  <footer>
+    <p>footer</p>
+  </footer>
+
+</body>
+</html>
