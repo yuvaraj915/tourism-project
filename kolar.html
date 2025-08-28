@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KOLAR DISTRICT</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: skyblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
+      color: green;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
+    }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
+</head>
+<body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "ammerahalli lake": {
+      description: "Click here to khow more about Ammerahalli Lake",
+      link: ""
+    },
+     "antarganga falls":{
+        description: "Click here to khow more about Antaraganga Falls",
+        link:""
+     },
+    "shri kolaramma devi temple": {
+      description: "Click here to khow more about Shri Kolaramma Devi Temple",
+      link: ""
+    },
+    "shri someshwara swamy temple": {
+      description: "Click here to khow more about Shri Someshwara Swamy Temple",
+      link: ""
+    },
+    "vakkaleri shree anjaneya swamy temple": {
+      description: "Click here to khow more about Vakkaleri Shree Anjaneya Swamy Temple",
+      link: ""
+    },
+    "antaragange cave and water": {
+      description: "Click here to khow more about Antaragange Cave And Water",
+      link: ""
+    },
+    "sri prasanna venkataraman swamy temple": {
+      description: "Click here to khow more about Sri Prasanna Venkataraman Swamy Temple",
+      link: ""
+    },
+    "avani temple": {
+      description: "Click here to khow more about Avani Temple",
+      link: ""
+    },
+    "kotilingeshwara temple": {
+      description: "Click here to khow more about Kotilingeshwara Temple",
+      link: ""
+    },
+    "kurudumale ganesha temple": {
+      description: "Click here to khow more about Kurudumale Ganesha Temple",
+      link: ""
+    },
+    "yaragola dam": {
+      description: "Click here to khow more about Yaragola Dam",
+      link: ""
+    },
+    "bethamangala dam": {
+      description: "Click here to khow more about Bethamangala Dam",
+      link: ""
+    },
+    "scenic kendatti quarry": {
+      description: "Click here to khow more about Scenic Kendatti Quarry",
+      link: ""
+    },
+    "kolar golden fields": {
+      description: "Click here to khow more about Kolar Golden Fields(KGF)",
+      link: ""
+    },
+
+
+};
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
+
+  <main>
+    <h1 class="card-section-title">WELCOME TO KOLAR DISTRICT</h1>
+    <h2 class="card-subtitle">Kolar is famous for its historical association with the Kolar Gold Fields, its large milk production industry, its prominent position as a major silk-producing district, and its significant number of ancient temples and religious sites such as the Kolaramma Temple and Someshwara Temple.</h2> 
+
+    <h1 style="text-align: center;">Lakes and Falls</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Ammeralli lake" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Ammerahalli Lake</h3>
+        </div>
+      </div>
+    </div>
+  <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Antaragange Falls" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Antaragange Falls</h3>
+        </div>
+      </div>
+    </div>
+   <h1 style="text-align: center;">Spirtual places </h1> 
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Kolaramma Devi Temple " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Kolaramma Devi Temple</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Someshwara Swamy Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Someshwara Swamy Temple</h3>
+        </div>
+      </div>
+    </div>
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Vakkaleri Shree Anjaneya Swamy Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Vakkaleri Shree Anjaneya Swamy Temple</h3>
+        </div>
+      </div>
+    </div>
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Antaragange Cave And Water" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Antaragange Cave And Water</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sri Prasanna Venkataraman Swamy Temple " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Sri Prasanna Venkataraman Swamy Temple </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Avani temple " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Avani temple </h3>
+        </div>
+      </div>
+    </div>
+     <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kotilingeshwara Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Kotilingeshwara Temple </h3>
+        </div>
+      </div>
+    </div>
+ <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kurudumale Ganesha Temple" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Kurudumale Ganesha Temple</h3>
+        </div>
+      </div>
+    </div>
+<h1 style="text-align: center;">Dams</h1> 
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Yaragola Dam " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Yaragola Dam  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bethamangala Dam " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Bethamangala Dam</h3>
+        </div>
+      </div>
+    </div>
+
+    <h1 style="text-align: center;">Others</h1> 
+<div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Scenic Kendatti Quarry  " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Scenic Kendatti Quarry </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kolar Golden Fields  " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Kolar Golden Fields(KGF)</h3>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+     <a href="#top" class="back-to-top">Back to Top</a>
+     </main>
+
+  <footer>
+    <p>footer</p>
+  </footer>
+
+</body>
+</html>

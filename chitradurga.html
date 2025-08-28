@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> CHITRADURGA DISTRICT</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: skyblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
+      color: green;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
+    }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
+</head>
+<body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "tuppada kola": {
+      description: "Click here to know more about Tuppada Kola ",
+      link: ""
+    
+    },
+    "chitradurga fort": {
+      description: "Click here to know more about Chitradurga Fort",
+      link: ""
+    },
+    "onake obavvana kindi": {
+      description: "Click here to know more about Onake Obavvana Kindi ",
+      link: ""
+    },
+    "murugha vana": {
+      description: "Click here to know more about Murugha Vana ",
+      link: ""
+    },
+    "chandravalli archaeological site": {
+      description: "Click here to know more about Chandravalli Archaeological Site  ",
+      link: ""
+    },
+    "kamana baavi": {
+      description: "Click here to know more about Kamana Baavi || Chickpet ||",
+      link: ""
+    },
+    "historical dhavalihonda": {
+      description: "Click here to know more about Historical Dhavalihonda  ",
+      link: ""
+    },
+    "shri ekanatheshwari devi temple": {
+      description: "Click here to know more about Shri Ekanatheshwari Devi Temple ",
+      link: ""
+    },
+    "sri murugha matha": {
+      description: "Click here to know more about Sri Murugha Matha  ",
+      link: ""
+    },
+    "anubhava mantapa": {
+      description: "Click here to know more about Anubhava Mantapa || Shri Murugha",
+      link: ""
+    },
+    "matha": {
+      description: "Click here to know more about Matha || Chithradurga ",
+      link: ""
+    },
+};
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
+  
+  <main>
+    <h1 class="card-section-title">WELCOME TO CHITRADURGA DISTRICT</h1>
+    <h2 class="card-subtitle">Chitradurga district is an administrative region in the Indian state of Karnataka, known for its historical forts, ancient sites, and picturesque landscape with unique rock formations. Located in the northern part of the state, it is named after the "Chitrakaldurga" hill and includes the city of Chitradurga as its headquarters.</h2> 
+
+    <h1 style="text-align: center;">Historical sites</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Tuppada Kola " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Tuppada Kola </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Chitradurga Fort" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Chitradurga Fort</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Onake Obavvana Kindi " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Onake Obavvana Kindi </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Murugha Vana " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Murugha Vana </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt=" Chandravalli Archaeological Site  " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Chandravalli Archaeological Site  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Kamana Baavi || Chickpet ||" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title"> Kamana Baavi || Chickpet || </h3>
+        </div>
+      </div>
+    </div>
+     <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Historical Dhavalihonda " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Historical Dhavalihonda  </h3>
+        </div>
+      </div>
+    </div>
+     <h1 style="text-align: center;">Spirtual places</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Ekanatheshwari Devi Temple " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Shri Ekanatheshwari Devi Temple </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sri Murugha Matha  " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Sri Murugha Matha  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Anubhava Mantapa || Shri Murugha" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Anubhava Mantapa || Shri Murugha</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Matha || Chithradurga " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Matha || Chithradurga</h3>
+        </div>
+      </div>
+    </div>
+    
+    <a href="#top" class="back-to-top">Back to Top</a>
+     </main>
+
+  <footer>
+    <p>footer</p>
+  </footer>
+
+</body>
+</html>

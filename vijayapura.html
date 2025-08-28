@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VIJAYAPURA DISTRICT</title>
+  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header, footer {
+      color: black;
+      background-color: skyblue;
+      padding: 1%;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .card-section-title {
+      color: green;
+    }
+
+    .card-subtitle {
+      font-family: 'Courier New';
+    }
+
+    .tour-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .row-even {
+      flex-direction: row-reverse;
+    }
+
+    .tour-card {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin: 0 20px;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    .tour-image {
+      width: 100%;
+      display: block;
+    }
+
+    .top-overlay {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .badge {
+      background: white;
+      color: green;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .tour-info {
+      padding: 16px;
+    }
+
+    .state {
+      color: #00aa88;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 4px 0 8px;
+    }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    </style>
+
+</head>
+<body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+  <header>
+    <h1>KA ADVENTURE</h1>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "bijapur fort": {
+      description: "Click here to know more about Bijapur Fort",
+      link: ""
+    },
+    "gol gumbaz": {
+      description: "Click here to know more about Gol Gumbaz",
+      link: ""
+    },
+    "asar mahal": {
+      description: "Click here to know more about Asar Mahal",
+      link: ""
+    },
+    "ibrahim roza": {
+      description: "Click here to know more about Ibrahim Roza - Vijayapura",
+      link: ""
+    },
+    "bara kaman": {
+      description: "Click here to know more about Bara Kaman",
+      link: ""
+    },
+    "shri kshetra narasimha temple": {
+      description: "Click here to know more about Shri Kshetra Narasimha Temple",
+      link: ""
+    },
+    "jod gumbaj tombs": {
+      description: "Click here to know more about Jod Gumbaj Tombs",
+      link: ""
+    },
+    "uppali burj": {
+      description: "Click here to know more about Uppali Burj",
+      link: ""
+    },
+    "begum taalab": {
+      description: "Click here to know more about Begum Taalab",
+      link: ""
+    },
+    "gagana mahal palace": {
+      description: "Click here to know more about Gagana Mahal Palace",
+      link: ""
+    },
+    "anand mahal": {
+      description: "Click here to know more about Anand Mahal",
+      link: ""
+    },
+    "jamiya masjid": {
+      description: "Click here to know more about Jamiya Masjid",
+      link: ""
+    },
+    "sath kabar": {
+      description: "Click here to know more about Sath Kabar, tombs of Afzal Khan's 63 wives",
+      link: ""
+    },
+    "jala mahal summer palace": {
+      description: "Click here to know more about Jala Mahal Summer Palace",
+      link: ""
+    },
+
+
+};
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+</header>
+  
+  <main>
+    <h1 class="card-section-title">WELCOME TO VIJAYAPURA DISTRICT</h1>
+    <h2 class="card-subtitle">Bijapur district, officially known as Vijayapura district, is a district in the state of Karnataka in India. The city of Bijapur is the headquarters of the district, and is located 530 km northwest of Bangalore. Bijapur is well known for the great monuments of historical importance built during the Adil Shahi dynasty.</h2> 
+
+    <h1 style="text-align: center;">Tourist Places</h1>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Bijapur Fort " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Bijapur Fort  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Gol Gumbaz" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Gol Gumbaz</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Asar Mahal" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Asar Mahal</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Ibrahim Roza - Vijayapura " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Ibrahim Roza - Vijayapura </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt=" Bara Kaman " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Bara Kaman </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Shri Kshetra Narasimha Temple " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title"> Shri Kshetra Narasimha Temple </h3>
+        </div>
+      </div>
+    </div>
+     <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Jod Gumbaj Tombs " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Jod Gumbaj Tombs  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Uppali Burj " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Uppali Burj  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Begum Taalab" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Begum Taalab</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Gagana Mahal Palace " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Gagana Mahal Palace </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Anand Mahal" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Anand Mahal </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Jamiya Masjid " class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Jamiya Masjid  </h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Sath Kabar, tombs of Afzal Khan's 63 wives" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Sath Kabar, tombs of Afzal Khan's 63 wives</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
+            <img src="" alt="Jala Mahal Summer Palace" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Jala Mahal Summer Palace</h3>
+        </div>
+      </div>
+    </div>
+    <a href="#top" class="back-to-top">Back to Top</a>
+     </main>
+
+  <footer>
+    <p>footer</p>
+  </footer>
+
+</body>
+</html>
