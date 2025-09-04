@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>MADIKERI DISTRICT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -12,7 +12,7 @@
 
     header, footer {
       color: black;
-      background-color: aliceblue;
+      background-color: skyblue;
       padding: 1%;
       text-align: center;
     }
@@ -91,13 +91,239 @@
       font-size: 18px;
       margin: 4px 0 8px;
     }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    
   </style>
 </head>
 <body>
+<div id="google_translate_element"></div>
+<script >
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
 
-  <header>
+<script  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+<header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "abbi falls ": {
+      description: "Click here to know more about abbi falls",
+      link: "abbidetails.html",
+    },
+    "irup waterfalls": {
+      description: "Click here to know more about irup waterfalls",
+      link: "irupdetails.html",
+    },
+    "mallalli waterfalls": {
+      description: "Click here to know more about mallalli waterfalls",
+      link: "mallallidetails.html",
+    },
+    "cheluvara waterfalls": {
+      description: "Click here to know more about cheluvara waterfalls",
+      link: "cheluvadetails.html",
+    },
+    "kote abbe waterfalls": {
+      description: "Click here to know more about kote abbe waterfalls",
+      link: "kotedetails.html",
+    },
+    "devaragundi waterfalls": {
+      description: "Click here to know more about devaragundi waterfalls",
+      link: "Devaradetails.html",
+    },
+    "harangi dam": {
+      description: "Click here to know more about harangi dam",
+      link: "harahgidetails.html",
+    },
+    "talakaveri temple": {
+      description: "Click here to know more about talakaveri temple",
+      link: "talakaveridetails.html",
+    },
+    "sri bhagandeshwara temple": {
+      description: "Click here to know more about sri bhagandeshwara temple",
+      link: "bhaganddetails.html",
+    },
+    "sri omkareshwara temple": {
+      description: "Click here to know more about sri omkareshwara temple",
+      link: "omkaradetails.html",
+    },
+    "madikeri fort": {
+      description: "Click here to know more about madikeri fort",
+      link: "mmfortdetails.htm",
+    },
+    "raja's tombs": {
+      description: "Click here to know more about raja's tombs",
+      link: "rajaetails.htm",
+    },
+    "madikeri namdroling monastery golden temple": {
+      description: "Click here to know more about madikeri namdroling monastery golden temple",
+      link: "goldendetails.html",
+    },
+    "sera mey monastic university": {
+      description: "Click here to know more about sera mey monastic university",
+      link: "seradetails.html",
+    },
+    "the vintage cars museum – coorg": {
+      description: "Click here to know more about the vintage cars museum – coorg",
+      link: "vintagedetails.html",
+    },
+    "government museum –madikeri": {
+      description: "Click here to know more about government museum –madikeri",
+      link: "govmdetalsdetails.html",
+    },
+    "mandalpatti peak": {
+      description: "Click here to know more about mandalpatti peak",
+      link: "mpattidetails.html",
+    },
+    "bhrahmagiri hills viewpoint": {
+      description: "Click here to know more about bhrahmagiri hills viewpoint",
+      link: "brahmadetails.html",
+    },
+    "nishani motte": {
+      description: "Click here to know more about nishani motte",
+      link: "nishanidetails.html",
+    },
+    "makkalagudi betta": {
+      description: "Click here to know more about makkalagudi betta",
+      link: "makkaldetails.html",
+    },
+    "pushpagiri": {
+      description: "Click here to know more about pushpagiri",
+      link: "pushpadetails.html",
+    },
+    "kote betta": {
+      description: "Click here to know more about kote betta",
+      link: "kotedetails.html",
+    },
+    "tadiandamol": {
+      description: "Click here to know more about tadiandamol",
+      link: "tadiandetails.html",
+    },
+    "harangi reservoir": {
+      description: "Click here to know more about harangi reservoir",
+      link: "haragiredetails.html",
+    },
+    "raja's seat garden": {
+      description: "Click here to know more about raja's seat garden",
+      link: "rajagardetails.html",
+    },
+    "dubare elephant camp": {
+      description: "Click here to know more about dubare elephant camp",
+      link: "dubaredetails.html",
+    },
+    "kodagu white water rafting": {
+      description: "Click here to know more about kodagu white water rafting",
+      link: "raftingdetails.html",
+    },
+    "the quarry adventures & cafe quarry": {
+      description: "Click here to know more about the quarry adventures & cafe quarry",
+      link: "quarrydetails.html",
+    },
+    "pushpagiri wildlife sanctuary": {
+      description: "Click here to know more about pushpagiri wildlife sanctuary",
+      link: "pushpagdetails.html",
+    },
+    "kabini wildlife safari ticket": {
+      description: "Click here to know more about kabini wildlife safari ticket",
+      link: "kabinidetails.html",
+    },
+    "nagarahole tiger reserve": {
+      description: "Click here to know more about nagarahole tiger reserve",
+      link: "nagarahdetails.html",
+    },
+    "mercara gold estate coffee plantation": {
+      description: "Click here to know more about mercara gold estate coffee plantation",
+      link: "mercaradetails.html",
+    },
+    "honnamana kere": {
+      description: "Click here to know more about honnamana kere",
+      link: "honnammadetails.html",
+    },
+    "nalkand palace": {
+      description: "Click here to know more about nalkand palace",
+      link: "nalkanddetails.html",
+    },
+    "madikeri museum": {
+      description: "Click here to know more about madikeri museum",
+      link: "madikerimuseumdetails.html",
+    },
+    "greenway coffee island plantation tour":{
+      description:"Click here to know more about greenway coffee island plantation tour",
+
+    },
+
+ };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
 
   <main>
     <h1 class="card-section-title">WELCOME MADIKERI DISTRICT</h1>
