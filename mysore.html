@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
-   <meta charset="UTF-8"/>
+<html lang="en">
+  <head>
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=divice-width,initial-scale=1.0">
-<head>
-  <title>MYSORE DISTRICT</title>
+   <title>MYSORE DISTRICT</title>
   <style>
     body {
       margin: 0;
@@ -16,7 +16,6 @@
       background-color: aliceblue;
       padding: 1%;
       text-align: center;
-      
     }
 
     main {
@@ -93,6 +92,13 @@
       font-size: 18px;
       margin: 4px 0 8px;
     }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
     .search-container{
       text-align: right;
       
@@ -124,13 +130,12 @@
     .result a:hover {
       text-decoration: underline;
     }
-
+    
   </style>
 </head>
 <body>
 <div id="google_translate_element"></div>
-
-<script type="text/javascript">
+<script >
   function googleTranslateElementInit() {
     new google.translate.TranslateElement(
       {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
@@ -139,11 +144,9 @@
   }
   </script>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+<script  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
-
-
-  <header>
+<header>
     <h1>KA ADVENTURE</h1>
     <div class="search-container">
     <input type="text" id="searchBox" placeholder="Search places...">
@@ -151,80 +154,73 @@
 </div>
 <div class="result" id="resultBox"></div>
 </header>
-
 <script>
   const places = {
-    mysore_palace: {
-      description: "Click here to khow more about mysore palace",
-      link: "palacedetails.html"
-    },
-    
-    "chamundi hills": {
-      description: "click here to know more about chamundi hills",
-      link: "chamundidetails.html"
-    },
-    "st philomena church": {
-      description: "Click here to know more about St Philomena Church",
-      link: "philominadetails.html"
-    },
-    "railway museum": {
-      description: "Click here to know more about Railway Museum",
-      link: "museumdetalis.html"
+    "mysore palace ": {
+      description: "Click here to know more about mysore palace",
+      link: "palacedetails.html",
     },
     "jaganmohan palace": {
-      description: "Click here to know more about Jaganmohan Palace",
-      link: "jmpdetails.html"
-    },  
-    "shree chamundeshwari temple": {
-      description: "Click here to know more about Shree Chamundeshwari Temple",
-      link: "chamundidetails.html"
+      description: "Click here to know more about jaganmohan palace",
+      link: "jmpdetails.html",
+    },
+    "chamundeshwari temple": {
+      description: "Click here to know more about chamundeshwari temple",
+      link: "chamundidetails.html",
+    },
+    "st. philomina church": {
+      description: "Click here to know more about st. philomina church",
+      link: "philominadetails.html",
     },
     "shrikanteshwara temple": {
-      description: "Click here to know more about Shrikanteshwara Temple",
-      link: "sktdetails.html"
+      description: "Click here to know more about shrikanteshwara temple",
+      link: "sktdetails.html",
     },
     "mysore zoo": {
-      description: "Click here to know more about Mysore Zoo",
-      link: "zoodetails.html"
+      description: "Click here to know more about mysore zoo",
+      link: "zoodetails.html",
     },
     "karanji lake": {
-      description: "Click here to know more about Karanji Lake",
-      link: "karanjidetails.html"
+      description: "Click here to know more about karanji lake",
+      link: "karanjidetails.html",
     },
     "nagarahole national park": {
-      description: "Click here to know more about Nagarahole National Park",
-      link: "nagaraholedetails.html"
+      description: "Click here to know more about nagarahole national park",
+      link: "nagaraholedetails.html",
     },
     "rail museum": {
-      description: "Click here to know more about Railway Museum",
-      link: "museumdetalis.html"
-    },
-    "grs fantasy park": {
-      description: "Click here to know more about GRS Fantasy Park",
-      link: "grsdetails.html"
-    },
-    "shuka vana": {
-      description: "Click here to know more about Shuka Vana",
-      link: "shukadetails.html"
-    },
-    "devaraja market": {
-      description: "Click here to know more about Devaraja Market",
-      link: "devarajadetails.html"
-    },
-    "kukkralli lake": {
-      description: "Click here to know more about Kukkralli Lake",
-      link: "kukkrallidetails.html"
+      description: "Click here to know more about rail museum",
+      link: "museumdetalis.html",
     },
     "sand sculpture museum": {
-      description: "Click here to know more about Sand Sculpture Museum",
-      link: "sanddetails.html"
+      description: "Click here to know more about sand sculpture museum",
+      link: "sanddetails.html",
+    },
+    "grs fantasy park": {
+      description: "Click here to know more about grs fantasy park",
+      link: "grsdetails.html",
+    },
+    "shuka vana": {
+      description: "Click here to know more about shuka vana",
+      link: "shukadetails.html",
+    },
+    "devaraja market": {
+      description: "Click here to know more about devaraja market",
+      link: "devarajadetails.html",
+    },
+    "kukkralli lake": {
+      description: "Click here to know more about kukkralli lake",
+      link: "kukkrallidetails.html",
     },
     "payana": {
-      description: "Click here to know more about Payana",
-      link: "payanadetails.html"
+      description: "Click here to know more about payana",
+      link: "payanadetails.html",
     },
-};
+    
 
+
+
+};
   const searchBox = document.getElementById("searchBox");
   const resultBox = document.getElementById("resultBox");
 
@@ -248,7 +244,7 @@
     }
   });
 </script>
-</header>
+
 
   <main>
     <h1 class="card-section-title">WELCOME MYSORE DISTRICT</h1>
@@ -258,7 +254,8 @@
     </h2>
 
     <h1 style="text-align: center;">Historical & Architectural Marvels</h1>
- <!-- Mysore Palace -->
+
+    <!-- Mysore Palace -->
     <div class="tour-row row-odd">
       <div class="tour-card">
         <div class="image-container">
@@ -413,7 +410,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="museumdetalis.html">
-            <img src="" alt="Payana" class="tour-image">
+            <img src="payana.jpg" alt="Payana" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -429,7 +426,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="sanddetails.html">
-            <img src="sand museum.jfif" alt="sank sculpture museum" class="tour-image">
+            <img src="sandmuseum.jfif" alt="sank sculpture museum" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -507,8 +504,8 @@
         </div>
       </div>
     </div>
-     <h1 style="text-align: center";>Best Time To Visit</h1>
-     <h2 style="text-align: center";> October to March, with the highlight being the Dasara festival</h2>
+     <h1 style="text-align: center">Best Time To Visit</h1>
+     <h2 style="text-align: center"> October to March, with the highlight being the Dasara festival</h2>
   </main>
 
   <footer>
@@ -517,4 +514,3 @@
 
 </body>
 </html>
-
