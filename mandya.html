@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
-<mete charset="UTF-8">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head>
   <title>MANDYA DISTRICT</title>
+  
   <style>
     body {
       margin: 0;
@@ -92,26 +93,170 @@
       font-size: 18px;
       margin: 4px 0 8px;
     }
+    .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
   </style>
-</head>
-<body>
+  </head>
+  <body>
 <div id="google_translate_element"></div>
 
-<script type="text/javascript">
+<script>
+
   function googleTranslateElementInit() {
     new google.translate.TranslateElement(
       {pageLanguage: 'en', includedLanguages: 'kn,en'},
       'google_translate_element'
     );
   }
+  </script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
 
   <header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "krishna raja sagara dam ": {
+      description: "Click here to know more about krishna raja sagara dam ",
+      link: "krsdamdetails.html",
+    },
+    "venugopalaswamy temple": {
+      description: "Click here to know more about venugopalaswamy temple",
+      link: "venugopalswamytempledetails.html",
+    },
+    "shivanasamudra falls": {
+      description: "Click here to know more about shivanasamudra falls",
+      link: "smfalls.html",
+    },
+    "ranganthittu bird sanctuary": {
+      description: "Click here to know more about ranganthittu bird sanctuary",
+      link: "ranganathittubirdsanctuarydetails.html",
+    },
+    "kokkare bellur": {
+      description: "Click here to know more about kokkare bellur",
+      link: "kokkarebellurdetails.html",
+    },
+    "thannur lake": {
+      description: "Click here to know more about thannur lake",
+      link: "tannurlakedetails.html",
+    },
+    "kunti betta": {
+      description: "Click here to know more about kunti betta",
+      link: "kuntibettadetails.html",
+    },
+    "ranganatha swamy temple": {
+      description: "Click here to know more about ranganatha swamy temple",
+      link: "rspdetails.html",
+    },
+    "jama masjid": {
+      description: "Click here to know more about jama masjid",
+      link: "jmsdetailes.html",
+    },
+    "tippu besige palace": {
+      description: "Click here to know more about tippu besige palace",
+      link: "tbadetails.html",
+    },
+    "melukote temple": {
+      description: "Click here to know more about melukote temple",
+      link: "melukote.html",
+    },
+    "adichunchanagiri hills": {
+      description: "Click here to know more about adichunchanagiri hills",
+      link: "chunchanagiri.html",
+    },
+    "mallikarjuna temple basaralu": {
+      description: "Click here to know more about mallikarjuna temple basaralu",
+      link: "mallikarjun.html",
+    },
+    "mahalingeshvara temple santebachall": {
+      description: "Click here to know more about mahalingeshvara temple santebachall",
+      link: "mahalingeshwara.html",
+    },
+    "karighatta temple": {
+      description: "Click here to know more about karighatta temple",
+      link: "karighatta.html",
+    },
+    "maddur": {
+      description: "Click here to know more about maddur",
+      link: "maddur.html",
+    },
+    "malavalli": {
+      description: "Click here to know more about malavalli",
+      link: "malavalli.html",
+    },
+
+
+     
+
+};
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+
 
   <main>
     <h1 class="card-section-title">WELCOME MANDYA DISTRICT</h1>
@@ -360,22 +505,7 @@
       </div>
     </div> 
     <h1 style="text-align: center;"> Cultural & Historical Towns</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="srpatna.html">
-            <img src="tippufort.jfif" alt="Srirangapatna" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-          <h3 class="title"> Srirangapatna</h3>
-        </div>
-      </div>
-    </div> 
+   
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -418,4 +548,3 @@
 
 </body>
 </html>
-
