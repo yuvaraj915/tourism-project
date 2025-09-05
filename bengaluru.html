@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>BENGALURU DISTRICT</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial=scale=1.0">
   <style>
     body {
@@ -98,13 +99,420 @@
       color: blue;
       text-decoration: none;
     }
+  .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    
   </style>
 </head>
 <body>
+<div id="google_translate_element"></div>
+<script >
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
 
-  <header>
+<script  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+<header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "lalbagh botanical garden": {
+      description: "Click here to know more about lalbagh botanical garden",
+      link: "lalbaghdetails.html",
+    },
+    "sri chamarajendra park": {
+      description: "Click here to know more about sri chamarajendra park",
+      link: "chamarajendraparkdetails.html",
+    },
+    "mahatma gandhi park": {
+      description: "Click here to know more about mahatma gandhi park",
+      link: "mahatmagandhiparkdetails.html",
+    },
+    // Add more places as needed
+    "tipu sultan's summer palace": {
+      description: "Click here to know more about tipu sultan's summer palace",
+      link: "tipusultansummerpalacedetails.html",
+    },
+    "bengaluru fort": {
+      description: "Click here to know more about bengaluru fort",
+      link: "bengalurufortdetails.html",
+
+    },
+    "iskcon bangalore": {
+      description: "Click here to know more about iskcon bangalore",
+      link: "iskconbangaloredetails.html",
+    },
+    "huskur lake": {
+      description: "Click here to know more about huskur lake",
+      link: "huskurlakedetails.html",
+    },
+    "manchanabele dam": {
+      description: "Click here to know more about manchanabele dam",
+      link: "manchanabeledamdetails.html",
+    },
+    "puttenahalli lake": {
+      description: "Click here to know more about puttenahalli lake",
+      link: "puttenahallilakedetails.html",
+    },
+    "devarayanadurga": {
+      description: "Click here to know more about devarayanadurga",
+      link: "devarayanadurga.html",
+    },
+    "savandurga": {
+      description: "Click here to know more about savandurga",
+      link: "savandurga.html",
+    },
+    "nandi hills": {
+      description: "Click here to know more about nandi hills",
+      link: "nandihills.html",
+    },
+    "bannerghatta national park": {
+      description: "Click here to know more about bannerghatta national park",
+      link: "bannerghattanationalparkdetails.html",
+    },
+    "bilikal rangaswamy betta": {
+      description: "Click here to know more about bilikal rangaswamy betta",
+      link: "bilikalrangaswamybettadetails.html",
+    },
+    "chunchi falls": {
+      description: "Click here to know more about chunchi falls",
+      link: "chunchifallsdetails.html",
+    },
+    "ghati subramanya": {
+      description: "Click here to know more about ghati subramanya",
+      link: "ghatisubramanyadetails.html",
+    },
+    "ramohalli": {
+      description: "Click here to know more about ramohalli",
+      link: "ramohallidetails.html",
+    },
+    "thippagondanahalli dam": {
+      description: "Click here to know more about thippagondanahalli dam",
+      link: "thippagondanahallidamdetails.html",
+
+    },
+    "chikkaballapur": {
+      description: "Click here to know more about chikkaballapur",
+      link: "chikkaballapurdetails.html",
+    },
+    "jayamahal park": {
+      description: "Click here to know more about jayamahal park",
+      link: "jayamahalparkdetails.html",
+    },
+    "dodda alada mara": {
+      description: "Click here to know more about dodda alada mara",
+      link: "doddaaladamaradetails.html",
+    },
+      "indira gandhi musical fountain park": {
+      description: "Click here to know more about indira gandhi musical fountain park",
+      link: "indira gandhimusicalfountainparkdetails.html",
+    },
+      "butterfly park": {
+      description: "Click here to know more about butterfly park",
+      link: "butterflyparkdetails.html",
+    },
+      "jinke park": {
+      description: "Click here to know more about jinke park",
+      link: "jinkeparkdetails.html",
+    },
+      "tree park": {
+      description: "Click here to know more about tree park",
+      link: "treeparkdetails.html",
+    },
+      "shri ranadheera kanteerava park": {
+      description: "Click here to know more about shri ranadheera kanteerava park",
+      link: "shriranadheerakanteeravaparkdetails.html",
+      },
+      "jaya prakash narayana park": {
+      description: "Click here to know more about jaya prakash narayana park",
+      link: "jayaprakashnarayanaparkdetails.html",
+      },
+      "zen park": {
+      description: "Click here to know more about zen park",
+      link: "zenparkdetails.html",
+      },
+      "tavarekere park": {
+      description: "Click here to know more about tavarekere park",
+      link: "tavarekereparkdetails.html",
+      },
+      "cubbon park": {
+      description: "Click here to know more about cubbon park",
+      link: "cubbonparkdetails.html",
+      },
+      "jawaharlal nehru park": {
+      description: "Click here to know more about jawaharlal nehru park",
+      link: "jawaharlalnehruparkdetails.html",
+      },
+      "dr. rajkumar park": {
+      description: "Click here to know more about dr. rajkumar park",
+      link: "drrajkumarparkdetails.html",
+      },
+      "begur fort": {
+      description: "Click here to know more about begur fort",
+      link: "begurfortdetails.html",
+      },
+      "tipu sultan's armoury": {
+      description: "Click here to know more about tipu sultan's armoury",
+      link: "tipusultansarmourydetails.html",
+      },
+      "devanahalli fort": {
+      description: "Click here to know more about devanahalli fort",
+      link: "devanahallifortdetails.html",
+      },
+      "bengaluru palace": {
+      description: "Click here to know more about bengaluru palace",
+      link: "bengalurupalacedetails.html",
+      },
+      "shri champakadhama  swamy temple": {
+        description: "Click here to know more about shri champakadhama  swamy temple",
+        link: "shrichampakadhamaswamytempledetaills.html",
+      },
+      "kote sri prasanna venkataramana swamy temple": {
+        description: "Click here to know more about kote sri prasanna venkataramana swamy temple",
+        link: "kotesriprasannavenkataramanaswamytempledetaills.html",
+      },
+      "shri aananda lingeshwara temple": {
+        description: "Click here to know more about shri aananda lingeshwara temple",
+        link: "shriaanandalingeshwaratempledetaills.html",
+      },
+      "sri rajarajeshwari temple": {
+        description: "Click here to know more about sri rajarajeshwari temple",
+        link: "srirajarajeshwaritempledetaills.html",
+      },
+      "shrungagiri sri shanmukha swami gudi": {
+        description: "Click here to know more about shrungagiri sri shanmukha swami gudi",
+        link: "shrungagirisrishanmukhaswamigudidetaills.html",
+      },
+      "shri ramanjaneya gudda temple": {
+        description: "Click here to know more about shri ramanjaneya gudda temple",
+        link: "shriramanjaneyaguddatempledetaills.html",
+      },
+      "shri nimishamba devi temple": {
+        description: "Click here to know more about shri nimishamba devi temple",
+        link: "shrinimishambadevitempledetaills.html",
+      },
+      "shri subrahmanya swamy temple": {
+        description: "Click here to know more about shri subrahmanya swamy temple",
+        link: "shrisubrahmanyaswamytempledetaills.html",
+      },
+      "shri panchamukhi ganesha temple": {
+        description: "Click here to know more about shri panchamukhi ganesha temple",
+        link: "shripanchamukhiganeshatempledetaills.html",
+      
+      },
+      "sri swaminarayana temple": {
+        description: "Click here to know more about sri swaminarayana temple",
+        link: "sriswaminarayanatempledetaills.html",
+      
+      },
+      "shri dwadasha jyotirlinga jhiva temple":{
+        description: "Click here to know more about shri dwadasha jyotirlinga jhiva temple",
+        link: "shridwadashajyotirlingajivatempledetaills.html",
+      },
+      "sri prasanna krishna swami gudi":{
+        description: "Click here to know more about Sri Prasanna Krishna Swami Gudi",
+        link: "srisrisannakrishnaswamigudidetaills.html",
+      },
+      "shri rama devara temple":{
+        description: "Click here to know more about shri rama devara temple",
+        link: "shriramadevaratempledetaills.html",
+      },  
+      "sri prasanna krishna swami gudi":{
+        description: "Click here to know more about Sri Prasanna Krishna Swami Gudi",
+        link: "srisrisannakrishnaswamigudidetaills.html",
+
+      },
+      "maha bhodi society":{
+        description: "Click here to know more about maha bhodi society",
+        link: "mahabhodisocietydetaills.html",
+      },
+      "huskur lake":{
+        description: "Click here to know more about huskur lake",
+        link: "huskurlakedetails.html",
+      },
+      "manchanabele dam":{
+        description: "Click here to know more about manchanabele dam",
+        link: "manchanabeledamdetails.html",
+      },
+      "puttenahalli lake":{
+        description: "Click here to know more about puttenahalli lake",
+        link: "puttenahallilakedetails.html",
+      },
+      "hunasamaranahalli lake":{
+        description: "Click here to know more about hunasamaranahalli lake",
+        link: "hunasamaranahallilakedetails.html",
+      },
+      "varthur lake":{
+        description: "Click here to know more about varthur lake",
+        link: "varthurlakedetails.html",
+      },
+      "kundalahalli lake":{
+        description: "Click here to know more about kundalahalli lake",
+        link: "kundalahallilakedetails.html",
+      },
+      "lotus pond-lalbagh":{
+        description: "Click here to know more about lalbagh",
+        link: "lotusponddetails.html",
+      },
+     "horamavu agara lake":{
+        description: "Click here to know more about agara lake",
+        link: "horamavuagaralakedetails.html",
+      },
+      "turahalli forest":{
+        description: "Click here to know more about turahalli forest",
+        link: "turahalliforestdetails.html",
+
+      },
+      "mini forest":{
+        description: "Click here to know more about mini forest",
+        link: "miniforestdetails.html",
+      },
+      "indian military memorial ":{
+        description: "Click here to know more about indian military memmorial ",  
+        link: "indianmilitarymemorialdetails.html",
+
+      },
+      "national military memorial park":{
+        description: "Click here to know more about national military memorial park",
+        link: "nationalmilitarymemorialparkdetails.html",
+      },
+      "hal heritage center and aerospace museum":{
+        description: "Click here to know more about hal heritage center",
+        link: "halheritagecenterdetails.html",
+      },
+      "nimhans brain museum":{
+        description:"click here to know more about nimhans brain museum",
+        link:"nimhansbrainmuseumdetails.html",
+      },
+      "department for archaeology and museum":{
+        description:"click here to know more about department for archaeology and museum",
+        link:"departmentforarchaeologyandmuseumdetails.html",
+      },
+      "bannerghatta national park":{
+        description:"click here to know more about Bannerghatta National Park ",
+        link:"bannerghattadetails.html",
+      },
+      "Wonderla Amusement Park, Bengaluru":{
+        description:"click here to know more about Wonderla Amusement Park, Bengaluru",
+        link:"wonderlaamusementparkdetails.html",
+      },
+      "innovative film city":{
+        description:"click here to know more about innovative film city",
+        link:"innovativefilmcitydetails.html",
+      },
+      "fun world":{
+        description:"click here to know more about fun world",
+        link:"funworlddetails.html",
+      },
+      "snow city":{
+        description:"click here to know more about snow city",
+        link:"snowcitydetails.html",
+      },
+      "rage room":{
+        description:"click here to know more about rage room",
+        link:"rageroomdetails.html",
+      },
+      "moadel village":{
+        description:"click here to know more about moadel village",
+        link:"moadelvillagedetails.html",
+
+      },
+      "chunchi falls":{
+        description:"click here to know more about chunchi falls",
+        link:"chunchifallsdetails.html",
+      },
+      "manchanabele falls":{
+        description:"click here to know more about manchanabele falls",
+        link:"manchanabelfallsdetails.html",
+      },
+      "agara lake view point":{
+        description:"click here to know more about agara lake view point",
+        link:"agaralakeviewpointdetails.html",
+      },
+      "nandi hills view point":{
+        description:"click here to know more about nandi hills view point",
+        link:"nandihillsviewpointdetails.html",
+
+      },
+      "kempegowda tower":{
+        description:"click here to know more about kempegowda tower",
+        link:"kempegowdatowerdetails.html",
+      },
+      "namma bengaluru aquarium":{
+        description:"click here to know more about namma bengaluru aquarium",
+        link:"nammabengaluruacquariumdetails.html",
+      }
+};
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
 
   <main>
     <h1 class="card-section-title">WELCOME TO BENGALURU DISTRICT</h1>
@@ -131,7 +539,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="   sri Chamarajendra Park" class="tour-image">
+            <img src="" alt="sri Chamarajendra Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -163,7 +571,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Jayamahal " class="tour-image">
+            <img src="" alt="Jayamahal" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -171,7 +579,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title"> Jayamahal Park  </h3>
+        <h3 class="title"> Jayamahal Park</h3>
         </div>
       </div>
     </div>
@@ -211,7 +619,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Butterfly park " class="tour-image">
+            <img src="" alt="Butterfly park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -243,7 +651,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Jinke Park   " class="tour-image">
+            <img src="" alt="Jinke Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -259,7 +667,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Tree Park "class="tour-image">
+            <img src="" alt="Tree Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -275,7 +683,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="	Shri Ranadheera Kanteerava Park"class="tour-image">
+            <img src="" alt="	Shri Ranadheera Kanteerava Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -291,7 +699,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="	Jaya Prakash Narayana Park  "class="tour-image">
+            <img src="" alt="	Jaya Prakash Narayana Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -299,7 +707,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title">Jaya Prakash Narayana Park   </h3>
+        <h3 class="title">Jaya Prakash Narayana Park</h3>
         </div>
       </div>
     </div> 
@@ -307,7 +715,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="		Zen Park  "class="tour-image">
+            <img src="" alt="Zen Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -315,7 +723,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title">	Zen Park    </h3>
+        <h3 class="title">Zen Park</h3>
         </div>
       </div>
     </div> 
@@ -323,7 +731,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="	Tavarekere Park   "class="tour-image">
+            <img src="" alt="Tavarekere Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -331,7 +739,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title">	Tavarekere Park    </h3>
+        <h3 class="title">Tavarekere Park</h3>
         </div>
       </div>
     </div> 
@@ -339,7 +747,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="	cubbon park   "class="tour-image">
+            <img src="" alt="cubbon park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -355,7 +763,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="	Jawaharlal Nehru Park   "class="tour-image">
+            <img src="" alt="Jawaharlal Nehru Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -371,7 +779,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="	Dr. Rajkumar Park "class="tour-image">
+            <img src="" alt="	Dr. Rajkumar Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -379,7 +787,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title">		Dr. Rajkumar Park </h3>
+        <h3 class="title">Dr. Rajkumar Park</h3>
         </div>
       </div>
     </div> 
@@ -388,7 +796,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Tipu Sultan's Summer Palace"class="tour-image">
+            <img src="" alt="Tipu Sultan's Summer Palace" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -404,7 +812,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Bengaluru Fort"class="tour-image">
+            <img src="" alt="Bengaluru Fort" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -420,7 +828,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Begur Fort"class="tour-image">
+            <img src="" alt="Begur Fort" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -436,7 +844,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Tipu Sultan's Armoury"class="tour-image">
+            <img src="" alt="Tipu Sultan's Armoury" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -452,7 +860,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Devanahalli Fort"class="tour-image">
+            <img src="" alt="Devanahalli Fort" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -469,7 +877,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="ISKCON Bangalore"class="tour-image">
+            <img src="" alt="ISKCON Bangalore" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -485,7 +893,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Bengaluru Palace"class="tour-image">
+            <img src="" alt="Bengaluru Palace" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -501,7 +909,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Champakadhama Swamy Temple"class="tour-image">
+            <img src="" alt="Shri Champakadhama Swamy Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -517,7 +925,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Kote Sri Prasanna Venkataramana Swamy Temple"class="tour-image">
+            <img src="" alt="Kote Sri Prasanna Venkataramana Swamy Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -533,7 +941,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Aananda Lingeshwara Temple"class="tour-image">
+            <img src="" alt="Shri Aananda Lingeshwara Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -549,7 +957,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Sri Rajarajeshwari Temple"class="tour-image">
+            <img src="" alt="Sri Rajarajeshwari Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -565,7 +973,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shrungagiri Sri Shanmukha Swami Gudi"class="tour-image">
+            <img src="" alt="Shrungagiri Sri Shanmukha Swami Gudi" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -581,7 +989,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Ramanjaneya Gudda Temple"class="tour-image">
+            <img src="" alt="Shri Ramanjaneya Gudda Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -597,7 +1005,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Nimishamba Devi Temple"class="tour-image">
+            <img src="" alt="Shri Nimishamba Devi Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -613,7 +1021,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Subrahmanya Swamy Temple"class="tour-image">
+            <img src="" alt="Shri Subrahmanya Swamy Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -629,7 +1037,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Panchamukhi Ganesha Temple "class="tour-image">
+            <img src="" alt="Shri Panchamukhi Ganesha Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -645,7 +1053,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Swaminarayana Temple "class="tour-image">
+            <img src="" alt="Shri Swaminarayana Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -661,7 +1069,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Dwadasha Jyotirlinga Shiva Temple "class="tour-image">
+            <img src="" alt="Shri Dwadasha Jyotirlinga Shiva Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -677,7 +1085,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Sri Prasanna Krishna Swami Gudi "class="tour-image">
+            <img src="" alt="Sri Prasanna Krishna Swami Gudi" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -693,7 +1101,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Shri Rama Devara Temple"class="tour-image">
+            <img src="" alt="Shri Rama Devara Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -709,7 +1117,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Sri Kailasa Vaikunta Mahakshetra Temple"class="tour-image">
+            <img src="" alt="Sri Kailasa Vaikunta Mahakshetra Temple" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -725,7 +1133,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Maha Bodhi Society"class="tour-image">
+            <img src="" alt="Maha Bodhi Society" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -742,7 +1150,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Huskur Lake"class="tour-image">
+            <img src="" alt="Huskur Lake" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -758,7 +1166,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Manchanabele Dam"class="tour-image">
+            <img src="" alt="Manchanabele Dam" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -774,7 +1182,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Puttenahalli Lake"class="tour-image">
+            <img src="" alt="Puttenahalli Lake" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -790,7 +1198,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Hunasamaranahalli lake"class="tour-image">
+            <img src="" alt="Hunasamaranahalli lake" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -806,7 +1214,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Varthur Lake"class="tour-image">
+            <img src="" alt="Varthur Lake" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -822,7 +1230,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Kundalahalli Lake"class="tour-image">
+            <img src="" alt="Kundalahalli Lake" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -838,7 +1246,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Lotus Pond – Lalbagh"class="tour-image">
+            <img src="" alt="Lotus Pond – Lalbagh" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -854,7 +1262,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Horamavu Agara Lake"class="tour-image">
+            <img src="" alt="Horamavu Agara Lake" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -871,7 +1279,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Turahalli Forest"class="tour-image">
+            <img src="" alt="Turahalli Forest" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -887,7 +1295,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Mini Forest"class="tour-image">
+            <img src="" alt="Mini Forest" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -904,7 +1312,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Indian Military Memorial"class="tour-image">
+            <img src="" alt="Indian Military Memorial" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -920,7 +1328,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="National Military Memorial Park"class="tour-image">
+            <img src="" alt="National Military Memorial Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -938,7 +1346,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="HAL Heritage Centre and Aerospace Museum " class="tour-image">
+            <img src="" alt="HAL Heritage Centre and Aerospace Museum" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -954,7 +1362,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="NIMHANS Brain Museum Bengaluru  " class="tour-image">
+            <img src="" alt="NIMHANS Brain Museum Bengaluru" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -970,7 +1378,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Department of Archaeology and Museums  " class="tour-image">
+            <img src="" alt="Department of Archaeology and Museums" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -989,7 +1397,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Bannerghatta National Park " class="tour-image">
+            <img src="" alt="Bannerghatta National Park" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
@@ -1192,7 +1600,7 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
-            <img src="" alt="Namma Bengaluru Aquarium " class="tour-image">
+            <img src="" alt="Namma Bengaluru Aquarium" class="tour-image">
           </a>
           <div class="top-overlay">
             <span class="badge">KA ADVENTURE</span>
