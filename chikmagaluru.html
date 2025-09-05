@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>CHIKMAGALURU DISTRICT</title>
   <meta name="viewport" content="width=device-width, initial=scale=1.0">
@@ -91,35 +91,247 @@
       font-size: 18px;
       margin: 4px 0 8px;
     }
+  .back-to-top {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      text-decoration: none;
+    }
+    .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: blue;
+    }
+    .result a:hover {
+      text-decoration: underline;
+    }
+    
   </style>
 </head>
 <body>
+<div id="google_translate_element"></div>
+<script >
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en', includedLanguages: 'kn,en,hi'},
+      'google_translate_element'
+    );
+  }
+  </script>
 
-  <header>
+<script  src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+<header>
     <h1>KA ADVENTURE</h1>
-  </header>
+    <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search places...">
+<button id="searchBtn">Search</button>
+</div>
+<div class="result" id="resultBox"></div>
+</header>
+<script>
+  const places = {
+    "mahathma gandhi park ": {
+      description: "Click here to know more about mahathma gandhi park ",
+      link: "mahathmagandhiparkdetails.html",
+    },
+    "honnamma halla falls": {
+      description: "Click here to know more about honnamma halla falls",
+      link: "honnammahallafallsdetails.html",
+    },
+    "seetaalayyana giri park": {
+      description: "Click here to know more about seetaalayyana giri park",
+      link: "seetaalayyanagiriparkdetails.html",
+    },
+    "mullayyana giri betta peak": {
+      description: "Click here to know more about mullayyana giri betta peak",
+      link: "mullayyanagiribettapeakdetails.html",
+    },
+    "baba budangiri peak": {
+      description: "Click here to know more about baba budangiri peak",
+      link: "bababudangiripeakdetails.html",
+    },
+    "ranganabetta": {
+      description: "Click here to know more about ranganabetta",
+      link: "ranganabettadetails.html",
+    },
+    "chandra drona parvatha": {
+      description: "Click here to know more about chandra drona parvatha",
+      link: "chandradronaparvathadetails.html",
+    },
+    "jhari waterfall": {
+      description: "Click here to know more about jhari waterfall",
+      link: "jhariwaterfalldetails.html",
+    },
+      "hebbe waterfall": {
+      description: "Click here to know more about hebbe waterfall",
+      link: "hebbewaterfalldetails.html",   
+      },
+      "kallathigiri falls": {
+        description:"Clik here to know more about Kallathigiri Waterfall",
+        link:"kallathigirifallsdetails.html",
+      },
+      "shanthi falls":{
+        description:"Click here to know more about Shanthi Falls",
+        link:"shanthifallsdetails.html",
+
+      },
+      "ukkada waterfalls":{
+        description:"Click here to know more about Ukkada Waterfalls",
+        link:"ukkadawaterfallsdetails.html",
+      },
+      "diamond falls":{
+        description:"Click here to know more about Diamond Falls",
+        link:"diamondfallsdetails.html",
+      },
+      "kodige falls":{
+        description:"Click here to know more about Kodige Falls",
+        link:"kodigefallsdetails.html"
+      },
+      "hanumana gudi falls":{
+        description:"Click here to know more abput Hanumana Gudi Falls",
+        link:"hanumanagudifallsdetails.html"
+      },
+      "melina huluvathi falls":{
+        description:"Click here to know more about Melina Huluvathi Falls",
+        link:"melinahuluvathifallsdetails.html"
+      },
+      "kuvenpu park":{
+        description:"Click here to know more about Kuvenpu Park",
+        link:"kuvenpudetails.html"
+      },
+      "azaad park":{
+        description:"Click here to know more about Azaad Park",
+        link:"azaadparkdetails.html"
+      },
+      "bandekallu gudda":{
+        description:"Click here to know more about Bandekallu Gudda",
+        link:"bandekalluguddadetails.html"
+      },
+      "bhadra wildlife santuray":{
+        description:"Click here to know more about Bhadra Wildlife Santuray",
+        link:"bhadrawildlifesanturaydetails.html"
+      },
+      "mallanduru sunset setting point":{
+        description:"Click here to know more about Mallanduru Sunset Setting point",
+        link:"mallandurusunsetsettingpointdetails.html"
+      },
+      "kavikalmatta view point":{
+        description:"Click here to know more about Kavikalmatta View Point",
+        link:"kavikalmattaviewpointdetails.html"
+      },
+      "vasudhaare viewpoint, vasthare":{
+        description:"Click here to know more about Vasudhaare Viewpoint, Vasthare",
+        link:"vasudhaareviewpointvastharedetails.html"
+      },
+      "mullayyana giri twin caves":{
+        description:"Click here to know more about Mullayyana Giri Twin Caves",
+        link:"mullayyanagiritwincavesdetails.html"
+      },
+      "kemmannugundi sunset point":{
+        description:"Click here to know more about Kemmannugundi Sunset Point",
+        link:"kemmannugundisunsetpointdetails.html"
+      },
+      "alligundi view point":{
+        description:"Click here to know more about Alligundi View Point",
+        link:"alligundiviewpointdetails.html"
+      },
+      "devaramane viewpoint":{
+        description:"Click here to know more about Devaramane Viewpoint",
+        link:"devarmaneviewpointdetails.html"
+      },
+      "shri sitalayyanagiri gudi":{
+        description:"Click here to know more about Shri Sitalayyanagiri Gudi",
+        link:"shrisitalayyanagirigudidetails.html"
+      },
+      "shri deviramma temple":{
+        description:"Click here to know more about Shri Deviramma Temple",
+        link:"shridevirammatempledetails.html",
+      },
+      "shri durga parameshwari temple":{
+        description:"Click here to know more about Shri Durga Parameshwari Temple",
+        link:"shridurgaparameshwaritempledetails.html",
+      },
+      "shri shankatra matha -chikmagaluru branch":{
+        description:"Click here to know more about Shri Shankatra Matha -Chikmagaluru Branch",
+        link:"shrishankatramathachikmagalurubranddetails.html",
+      },
+      "ballalarayana durga fort":{
+        description:"Click here to know more about Ballalarayana Durga Fort", 
+        link:"ballalarayanadurgafortdetails.html",
+      },
+      "hierkolale lake walkpath":{
+        description:"Click here to know more about Hierkolale Lake Walkpath",
+        link:"hierkolalelakewalkpathdetails.html",
+
+      },
+      "high fly zip line":{
+        description:"Click here to know more about High Fly Zip-Line",
+        link:"highflyziplinedetails.html",
+      },
+      "quarry":{
+        description:"Click here to more details about Quarry",
+        link:"quarrydetails.html",
+      },
+      "vismitha coffee estate":{
+        description:"Click here to know more about Vismitha Coffee Estate",
+        link:"vismithacoffeeestatedetails.html",
+      },
+    };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
 
   <main>
     <h1 class="card-section-title">WELCOME TO CHIKMAGALURU DISTRICT</h1>
     <h2 class="card-subtitle">Chikmagaluru, also known as "Coffee Land of Karnataka," is a popular hill station in the Western Ghats known for its lush coffee plantations, scenic beauty, and pleasent climate.</h2>
 
     <h1 style="text-align: center;">Mountains and Peaks</h1>
-    <div class="tour-row row-even">
-      <div class="tour-card">
-        <div class="image-container">
-          <a href="">
-            <img src="" alt="Mahathma Gandhi Park" class="tour-image">
-          </a>
-          <div class="top-overlay">
-            <span class="badge">KA ADVENTURE</span>
-          </div>
-        </div>  
-        <div class="tour-info">
-          <p class="state">KARNATAKA</p>
-        <h3 class="title">Mahathma Gandhi Park</h3>
-        </div>
-      </div>
-    </div>
+    
     <div class="tour-row row-even">
       <div class="tour-card">
         <div class="image-container">
@@ -366,6 +578,22 @@
       <div class="tour-card">
         <div class="image-container">
           <a href="">
+            <img src="" alt="Mahathma Gandhi Park" class="tour-image">
+          </a>
+          <div class="top-overlay">
+            <span class="badge">KA ADVENTURE</span>
+          </div>
+        </div>  
+        <div class="tour-info">
+          <p class="state">KARNATAKA</p>
+        <h3 class="title">Mahathma Gandhi Park</h3>
+        </div>
+      </div>
+    </div>
+     <div class="tour-row row-even">
+      <div class="tour-card">
+        <div class="image-container">
+          <a href="">
             <img src="" alt="Kuvenpu Park" class="tour-image">
           </a>
           <div class="top-overlay">
@@ -586,7 +814,7 @@
         </div>  
         <div class="tour-info">
           <p class="state">KARNATAKA</p>
-        <h3 class="title">Shri Deviramma Temple</h3>
+        <h3 class="title">Shri Shankatra Matha -Chikmagaluru Branch</h3>
         </div>
       </div>
     </div>
@@ -672,7 +900,9 @@
         </div>
       </div>
     </div>
-    </main>
+     <a href="#top" class="back-to-top">Back to Top</a>
+     </main>
+
 
   <footer>
     <p>footer</p>
